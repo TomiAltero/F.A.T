@@ -8,7 +8,6 @@ Este proyecto de desarrollo de software es parte de un trabajo de fin de curso y
 2. **Facilitar el acceso y la utilización:** Garantizar que nuestro software sea fácil de usar y accesible para aquellos que lo necesitan.
 3. **Impacto positivo:** Lograr un impacto significativo en la resolución o alivio del problema social identificado.
 
-¡Claro! Aquí tienes la lista de integrantes con los íconos de GitHub enlazados a sus cuentas:
 
 ### Integrantes 
 
