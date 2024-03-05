@@ -12,11 +12,11 @@ Este proyecto de desarrollo de software es parte de un trabajo de fin de curso y
 ### Integrantes 
 
 <<<<<<< HEAD
-- Altero Tomas <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Bergliaffa Nicolas <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Bisio Facundo <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Ferreyra Octavio <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Lucero Octavio <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Montini Francisco <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Puig Hermes <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
-- Ravetti Mateo <a href="#"blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="tomas altero" height="15" width="30"/></a>
+- Altero Tomas <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="15" width="30"/></a>
+- Bergliaffa Nicolas <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="15" width="30"/></a>
+- Bisio Facundo <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
+- Ferreyra Octavio <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
+- Lucero Octavio <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
+- Montini Francisco <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
+- Puig Hermes <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
+- Ravetti Mateo <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
