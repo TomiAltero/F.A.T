@@ -11,7 +11,6 @@ Este proyecto de desarrollo de software es parte de un trabajo de fin de curso y
 
 ### Integrantes 
 
-<<<<<<< HEAD
 - Altero Tomas <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="15" width="30"/></a>
 - Bergliaffa Nicolas <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="15" width="30"/></a>
 - Bisio Facundo <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"  height="15" width="30"/></a>
