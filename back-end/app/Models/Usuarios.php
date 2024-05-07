@@ -18,6 +18,7 @@ class Usuarios extends Model
         'direccion',
         'email',
         'password',
+        
     ];
 
     public function tipo_usuario()

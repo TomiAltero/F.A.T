@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Usuarios;
 
 class UsuarioController extends Controller
 {
@@ -12,7 +13,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = Usuarios::all();
+        return $usuarios;
     }
 
     /**
@@ -20,7 +22,17 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = new Usuarios();
+
+        $usuario->tipo_usuario_id = $request->tipo_usuario_id;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->telefono = $request->telefono;
+        $usuario->direccion = $request->direccion;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+
+        $usuario->save();
     }
 
     /**
