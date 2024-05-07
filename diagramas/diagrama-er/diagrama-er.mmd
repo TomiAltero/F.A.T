@@ -1,0 +1,20 @@
+erDiagram
+    
+    TipoUsuario {
+        int idTipoUsuario PK
+        string nombre
+        string descripcion
+    }
+
+
+    Usuario {
+        int id PK
+        int idTipoUsuario FK
+        string nombre
+        string apellido
+        string email
+        string telefono
+        string direccion
+        string password
+    }
+
