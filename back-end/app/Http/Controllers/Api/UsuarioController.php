@@ -40,7 +40,7 @@ class UsuarioController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $usuario = Usuarios::find($id);
     }
 
     /**
