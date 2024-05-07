@@ -32,7 +32,7 @@ class UsuarioController extends Controller
         $usuario->email = $request->email;
         $usuario->password = $request->password;
 
-        $usuario->save();
+            $usuario->save();
     }
 
     /**
@@ -41,6 +41,7 @@ class UsuarioController extends Controller
     public function show(string $id)
     {
         $usuario = Usuarios::find($id);
+        return $usuario;
     }
 
     /**
@@ -48,7 +49,17 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = Usuarios::find($id);
+
+        $usuario->tipo_usuario_id = $request->tipo_usuario_id;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->telefono = $request->telefono;
+        $usuario->direccion = $request->direccion;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+
+        $usuario->save();
     }
 
     /**
@@ -56,6 +67,7 @@ class UsuarioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $usuario = Usuarios::find($id);
+        $usuario->delete();
     }
 }
