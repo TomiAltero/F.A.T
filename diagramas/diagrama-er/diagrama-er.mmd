@@ -6,15 +6,57 @@ erDiagram
         string descripcion
     }
 
+    Genero {
+        int idGenero PK
+        string nombre
+    }
+
+    Especialidad {
+        int idEspecialidad PK
+        string nombre
+    }
+
 
     Usuario {
         int idUsuario PK
         int idTipoUsuario FK
+        int idGenero FK
+        int idEspecialidad FK 
         string nombre
         string apellido
         string email
         string telefono
         string direccion
         string password
+        int dni
+        date fechaNacimiento
     }
 
+    Turno {
+        int idTurno PK
+        int idUsuario FK
+        date fecha
+        time hora
+        string motivo
+    }   
+
+    Consulta {
+        int idConsulta PK
+        int idUsuario FK
+        date fecha
+        time hora
+        string motivo
+        string diagnostico
+        string tratamiento
+    }
+
+    HistorialClinica {
+        int idHistoriaClinica PK
+        int idUsuario FK
+        string antecedentes
+        string alergias
+        string medicamentos
+        string enfermedades
+    }
+
+    
