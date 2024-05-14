@@ -4,26 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\TipoUsuario;
 
 class Usuarios extends Model
 {
+    use HasFactory;
+
     protected $table = 'usuarios';
 
     protected $fillable = [
-        'tipo_usuario_id',
         'nombre',
         'apellido',
-        'telefono',
-        'direccion',
+        'edad',
         'email',
-        'password',
-
+        'telefono',
     ];
-
-    public function tipo_usuario()
-    {
-        return $this->belongsTo(TipoUsuario::class);
-    }
-
 }
