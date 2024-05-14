@@ -51,7 +51,16 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = Usuarios::find($id);
+
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->edad = $request->edad;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+        $usuario->save();
+
+        return response()->json('Usuario actualizado con éxito');
     }
 
     /**
@@ -59,6 +68,9 @@ class UsuariosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $usuario = Usuarios::find($id);
+        $usuario->delete();
+        return response()->json('Usuario eliminado con éxito');
+
     }
 }
