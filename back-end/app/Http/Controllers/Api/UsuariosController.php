@@ -42,7 +42,8 @@ class UsuariosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $usuario = Usuarios::find($id);
+        return response()->json($usuario);
     }
 
     /**
