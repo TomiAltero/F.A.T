@@ -58,8 +58,8 @@ class UsuariosController extends Controller
         $usuario->edad = $request->edad;
         $usuario->email = $request->email;
         $usuario->telefono = $request->telefono;
-        $usuario->save();
 
+        $usuario->save();
         return response()->json('Usuario actualizado con éxito');
     }
 
