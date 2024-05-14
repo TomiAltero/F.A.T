@@ -23,7 +23,18 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = new Usuarios();
+
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->edad = $request->edad;
+        $usuario->email = $request->email;
+        $usuario->telefono = $request->telefono;
+
+        $usuario->save();
+
+        return response()->json('Usuario creado con éxito');
+
     }
 
     /**

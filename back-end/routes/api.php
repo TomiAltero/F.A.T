@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/usuarios', [UsuariosController::class, 'index']);
+Route::post('/usuarios', [UsuariosController::class, 'store']);
