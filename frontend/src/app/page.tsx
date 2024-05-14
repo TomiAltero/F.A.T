@@ -1,9 +1,5 @@
-import { LogIn } from "@/components/log-in";
-import Image from "next/image";
 export default function Home() {
   return (
-    <main>
-      <LogIn />
-    </main>
+    <h1 className="text-black">This is the main page</h1>
   )
 }

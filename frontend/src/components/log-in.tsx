@@ -14,7 +14,7 @@ export function LogIn() {
     <Card className="w-96 px-10 py-3">
       <CardHeader className="flex flex-row justify-between">
         <Image className="bg-custom-blue" src="/logo-du.png" width={72} height={50} alt="Logo DiU"/>
-        <CardTitle className="text-4xl text-center font-blacks">DOWN IS UP</CardTitle>
+        <CardTitle className="text-4xl text-center font-black">DOWN IS UP</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
@@ -28,7 +28,7 @@ export function LogIn() {
       </CardContent>
       <CardFooter>
         <Button className="w-full hover:bg-blue-500 transition-colors text-xl">Ingresar</Button>
-      <Link href="#" className="text-center text-sm">
+      <Link href="/signup" className="text-center text-sm">
         ¿No tienes cuenta? Crear una cuenta
       </Link>
       </CardFooter>

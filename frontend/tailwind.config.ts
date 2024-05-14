@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         "custom-blue": "#303487",
-        "custome-white": "#FDFDFD"
+        "custom-white": "#FDFDFD"
 
     },
   },
