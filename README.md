@@ -23,28 +23,28 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
     - **Historial Clinico Digital**: Proveer un registro detallado y accesible de las terapias y progresos de cada chico.
 
 4. #### Mejorar el Seguimiento y Evaluación
-    - Registro detallado: Mantener un registro exhaustivo de las evaluaciones y notas de cada sesión, facilitando el seguimiento del progreso.
+    - **Registro detallado**: Mantener un registro exhaustivo de las evaluaciones y notas de cada sesión, facilitando el seguimiento del progreso.
 
 
-    - Informes personalizados: Generar informes detallados para evaluar el avance de las terapias y planificar intervenciones futuras.
+    - **Informes personalizados:** Generar informes detallados para evaluar el avance de las terapias y planificar intervenciones futuras.
 
 5. #### Facilitar la Gestión Financiera
-    - Facturación eficiente: Simplificar el proceso de emisión y gestión de facturas, reduciendo errores y mejorando la transparencia.
+    - **Facturación eficiente:** Simplificar el proceso de emisión y gestión de facturas, reduciendo errores y mejorando la transparencia.
 
 
-    - Control de pagos: Llevar un control preciso de los pagos realizados y pendientes, mejorando la gestión financiera de la fundación.
+    - **Control de pagos:** Llevar un control preciso de los pagos realizados y pendientes, mejorando la gestión financiera de la fundación.
 
 6. #### Garantizar la Seguridad y Privacidad de los Datos
-    - Protección de información sensible: Asegurar que toda la información clínica y personal de los usuarios esté protegida mediante medidas de seguridad adecuadas.
+    - **Protección de información sensible:** Asegurar que toda la información clínica y personal de los usuarios esté protegida mediante medidas de seguridad adecuadas.
 
 
-    - Cumplimiento normativo: Garantizar que el sistema cumpla con las regulaciones y leyes aplicables sobre la protección de datos.
+    - **Cumplimiento normativo:** Garantizar que el sistema cumpla con las regulaciones y leyes aplicables sobre la protección de datos.
 
 7. #### Fomentar la Inclusión y el Apoyo Familiar
-    - Accesibilidad: Crear una plataforma accesible y fácil de usar para todos los usuarios, incluyendo a personas con discapacidades.
+    - **Accesibilidad:** Crear una plataforma accesible y fácil de usar para todos los usuarios, incluyendo a personas con discapacidades.
 
 
-    - Apoyo a las familias: Proveer herramientas y recursos que faciliten el involucramiento y el apoyo de las familias en el proceso terapéutico.
+    - **Apoyo a las familias:** Proveer herramientas y recursos que faciliten el involucramiento y el apoyo de las familias en el proceso terapéutico.
 
 
 ## Tecnologias utilizadas
