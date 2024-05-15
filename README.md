@@ -70,6 +70,42 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
   
 
 
+## Configuracion del back-end
+  
+1. **Clonar el repositorio:**
+
+```bash
+    git clone git@github.com:TomiAltero/downisup.git 
+    git checkout features-backend
+    cd back-end
+```
+
+
+2. **Instalar dependecias**  
+
+```bash
+    composer install
+```
+
+3. **Configurar el archivo .env**
+
+  Copiar el archivo .env.example y renombrarlo a .env. Configurar las variables de entorno para la base de datos y otros servicios necesarios.
+
+
+4. **Generar clave de la aplicacion:**
+
+```bash
+    php artisan key:generate
+```
+
+5. **Iniciar el servidor de desarrollo**
+
+```bash
+  php artisan serve
+```
+
+
+
 ### Integrantes 
 
 - Altero Tomas <a href="#"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="15" width="30"/></a>
