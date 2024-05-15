@@ -1,4 +1,4 @@
-# DownIsUp
+# Sistema De Gestión Para La Fundacion DownIsUp
 DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chicos con síndrome de Down. Hemos desarrollado un sistema de gestión integral para optimizar y facilitar las operaciones diarias de la fundación.
 
 
