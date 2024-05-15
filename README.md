@@ -105,6 +105,30 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 ```
 
 
+## Configuracion del front-end
+
+1. **Clonar el repositorio:**
+
+```bash
+    git checkout features/front-end
+    cd front-end
+```
+
+2. **Instalar dependecias**  
+
+```bash
+    npm install
+```
+
+3. **Iniciar el servidor de desarrollo**
+
+```bash
+    npm run dev
+```
+
+
+
+
 
 ### Integrantes 
 
