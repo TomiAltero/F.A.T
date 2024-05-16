@@ -14,10 +14,11 @@ benchmarks/graphs
 # ignore additional files using core.excludesFile
 # https://git-scm.com/docs/gitignore
 
-./src/.env
-./src/.env.example
-./src/.env.test
-./src/.env.development
-./src/.env.production
+
+.env
+.env.example
+.env.test
+.env.development
+.env.production
 ./src/config/config.json
 ./src/config/config.json.example
