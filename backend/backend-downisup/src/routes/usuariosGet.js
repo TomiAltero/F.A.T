@@ -16,5 +16,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const { nombre, email } = req.body;
+
+    const nuevoUsuario = await Usuario.create({ nombre, email });
+
+    console.log('Usuario creado:', nuevoUsuario.toJSON());
+
+    res.status(201).json(nuevoUsuario);
+  } catch (error) {
+    console.error('Error al agregar usuario:', error);
+    res.status(500).json({ error: 'Hubo un error al agregar usuario' });
+  }
+});
 module.exports = router;
 

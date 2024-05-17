@@ -1,17 +1,19 @@
 const express = require('express');
 const sequelize = require('./config/database');
-const usuariosRouter = require('./routes/usuarios');
+const usuariosGet = require('./routes/usuariosGet');
+const usuariosPost = require('./routes/usuarioPost');
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-
-app.use('/api/usuarios', usuariosRouter);
-
 app.get('/', (req, res) => {
   res.send('¡El servidor está funcionando correctamente!');
 });
+
+
+app.use('/api/usuarios', usuariosGet);
+app.use('/api/usuarios', usuariosPost);
 
 
 
