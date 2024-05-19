@@ -1,9 +1,6 @@
 const express = require('express');
 const sequelize = require('./config/database');
-const usuariosGet = require('./routes/usuariosGet');
-const usuariosPost = require('./routes/usuarioPost');
-const usuariosPut = require('./routes/usuariosPut');
-const usuarioDelete = require('./routes/usuarioDelete');
+const usuariosRoutes = require('./routes/usuariosRoutes');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -14,10 +11,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/api/usuarios', usuariosGet);
-app.use('/api/usuarios', usuariosPost);
-app.use('/api/usuarios', usuariosPut);
-app.use('/api/usuarios', usuarioDelete);
+app.use('/api/usuarios', usuariosRoutes);
 
 
 
