@@ -16,19 +16,24 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+
+
+router.get('/:id', async (req, res) => {
   try {
-    const { nombre, email } = req.body;
+    const { id } = req.params;
+    const usuario = await Usuario.findByPk(id);
 
-    const nuevoUsuario = await Usuario.create({ nombre, email });
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
 
-    console.log('Usuario creado:', nuevoUsuario.toJSON());
-
-    res.status(201).json(nuevoUsuario);
+    res.json(usuario);
   } catch (error) {
-    console.error('Error al agregar usuario:', error);
-    res.status(500).json({ error: 'Hubo un error al agregar usuario' });
+    console.error('Error al obtener el usuario:', error);
+    res.status(500).json({ error: 'Hubo un error al obtener el usuario' });
   }
 });
+
+
 module.exports = router;
 
