@@ -8,28 +8,20 @@ import Image from "next/image"
 import React, { useState } from "react"
 import { useFormState } from "react-dom"
 import { registerUserAction } from "@/data/actions/auth-actions"
+import axios from "axios"
 
 const INITIAL_STATE = {
   data: "Hello world =)"
 }
 
 export function SignUp() {
-
-  /*
-   TODO: Add checks for and username, email availability, password match, etc.    
-  */
-
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const handleCheckBoxChange = () => setShowPassword(!showPassword)
-
-  // Password handle
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [isMatch, setIsMatch] = useState<boolean>(true)
 
-  const [formState, formAction] = useFormState(registerUserAction, INITIAL_STATE)
+  const handleCheckBoxChange = () => setShowPassword(!showPassword)
 
-  console.log(formState, "client")
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     setIsMatch(event.target.value === confirmPassword); // Update match state
@@ -40,8 +32,36 @@ export function SignUp() {
     setIsMatch(event.target.value === password); // Update match state
   };
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Extract form data
+    const username = event.target.username.value;
+    const email = event.target.email.value;
+    const passwordi = event.target.password.value;
+
+    // Validate form data (optional, can be added here)
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/usuarios', {
+        username,
+        email,
+        password,
+      });
+
+      // Handle successful registration
+      console.log('User registration successful:', response.data);
+      // You can redirect to a success page or display a confirmation message here
+    } catch (error) {
+      console.error('Error registering user:', error.response?.data || error.message);
+      // Handle registration errors by displaying error messages to the user
+    }
+  };
+
+
+
   return (
-    <form action={formAction}>
+    <form onSubmit={handleFormSubmit}>
 
       <Card className="w-[500px]">
         <CardHeader className="flex flex-row justify-between">
@@ -50,7 +70,6 @@ export function SignUp() {
         </CardHeader>
         <CardContent>
           <section className="flex justify-center">
-
             <h1 className={`w-full text-white p-3 rounded-lg text-4xl text-center font-black uppercase ${nunito.className} `}>Regístrate</h1>
           </section>
           <section className="my-3">
@@ -93,10 +112,9 @@ export function SignUp() {
               <Button disabled={!isMatch} type='submit' className="font-bold ">Crear Cuenta</Button>
             </article>
           </section>
-
         </CardContent>
-
       </Card>
     </form>
   )
 }
+

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Usuario = require('../models/usuarios');
+const Usuario = require('../models/usuario');
 const usuarioController = require('../controllers/usuariosController');
 
 // Ruta para obtener todos los usuarios

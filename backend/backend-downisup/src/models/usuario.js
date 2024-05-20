@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Usuario = sequelize.define('usuarios', {
-  nombre: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -10,6 +10,10 @@ const Usuario = sequelize.define('usuarios', {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -22,4 +26,3 @@ const Usuario = sequelize.define('usuarios', {
 });
 
 module.exports = Usuario;
-

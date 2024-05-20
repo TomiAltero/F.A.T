@@ -1,4 +1,4 @@
-const Usuario = require('../models/usuarios');
+const Usuario = require('../models/usuario');
 
 exports.obtenerUsuarios = async (req, res) => {
   try {
@@ -29,8 +29,8 @@ exports.obtenerUsuarioPorId = async (req, res) => {
 
 exports.agregarUsuario = async (req, res) => {
   try {
-    const { nombre, email } = req.body;
-    const nuevoUsuario = await Usuario.create({ nombre, email });
+    const { username, email, password } = req.body;
+    const nuevoUsuario = await Usuario.create({ username, email, password })
     console.log('Usuario creado:', nuevoUsuario.toJSON());
     res.status(201).json(nuevoUsuario);
   } catch (error) {
@@ -42,14 +42,20 @@ exports.agregarUsuario = async (req, res) => {
 exports.actualizarUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, email } = req.body;
-    const usuario = await Usuario.findByPk(id);
+    const { username, email, password } = req.body;
+
+    let usuario = await Usuario.findByPk(id);
+
     if (!usuario) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-    usuario.nombre = nombre;
+
+    usuario.username = username;
     usuario.email = email;
+    usuario.password = password;
+
     await usuario.save();
+
     console.log('Usuario actualizado:', usuario.toJSON());
     res.json(usuario);
   } catch (error) {
@@ -57,6 +63,8 @@ exports.actualizarUsuario = async (req, res) => {
     res.status(500).json({ error: 'Hubo un error al actualizar usuario' });
   }
 };
+
+
 
 exports.eliminarUsuario = async (req, res) => {
   try {
