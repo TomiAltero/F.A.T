@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button"
 import { nunito } from "@/components/ui/fonts"
 import Image from "next/image"
 import React, { useState } from "react"
-import { useFormState } from "react-dom"
-import { registerUserAction } from "@/data/actions/auth-actions"
 import axios from "axios"
 
 const INITIAL_STATE = {
@@ -49,12 +47,10 @@ export function SignUp() {
         password,
       });
 
-      // Handle successful registration
       console.log('User registration successful:', response.data);
-      // You can redirect to a success page or display a confirmation message here
     } catch (error) {
+
       console.error('Error registering user:', error.response?.data || error.message);
-      // Handle registration errors by displaying error messages to the user
     }
   };
 
