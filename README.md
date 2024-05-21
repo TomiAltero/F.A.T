@@ -4,9 +4,10 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ## Tecnologias utilizadas
 #### BackEnd
-      - PHP
       - MySQL
-      - Laravel
+      - JavaScript
+      - Node JS
+      - Express JS 
 
 #### FrontEnd
       - HTML
@@ -19,8 +20,7 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ## Instalacion y Ejecucion del Sistema:
   - Node.js (v14.x o superior)
-  - Composer
-  - PHP (8.3)
+  - Express JS
   - MySQL (gestor de base de datos)
   
 
@@ -32,14 +32,14 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 ```bash
     git clone git@github.com:TomiAltero/downisup.git 
     git checkout features-backend
-    cd back-end
+    cd backend
 ```
 
 
 2. **Instalar dependecias**  
 
 ```bash
-    composer install
+    npm install
 ```
 
 3. **Configurar el archivo .env**
@@ -47,16 +47,12 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
   Copiar el archivo .env.example y renombrarlo a .env. Configurar las variables de entorno para la base de datos y otros servicios necesarios.
 
 
-4. **Generar clave de la aplicacion:**
+
+4. Migrar la Base de Datos (en la carpeta raiz)
 
 ```bash
-    php artisan key:generate
-```
-
-5. **Iniciar el servidor de desarrollo**
-
-```bash
-  php artisan serve
+  cd src/
+  npx sequelize-cli db:migrate
 ```
 
 
