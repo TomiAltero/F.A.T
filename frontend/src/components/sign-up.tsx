@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button"
 import { nunito } from "@/components/ui/fonts"
 import Image from "next/image"
 import React, { useState } from "react"
-import { useFormState } from "react-dom"
-import { registerUserAction } from "@/data/actions/auth-actions"
 import axios from "axios"
 
 const INITIAL_STATE = {
@@ -38,7 +36,7 @@ export function SignUp() {
     // Extract form data
     const username = event.target.username.value;
     const email = event.target.email.value;
-    const passwordi = event.target.password.value;
+    const password = event.target.password.value;
 
     // Validate form data (optional, can be added here)
 
