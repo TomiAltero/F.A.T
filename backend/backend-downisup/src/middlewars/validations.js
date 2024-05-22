@@ -11,8 +11,9 @@ const validateUserRegistration = [
 
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
+    } else {
+      return res.json({ message: 'Datos válidos' });
     }
-    next();
   }
 ];
 
