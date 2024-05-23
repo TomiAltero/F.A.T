@@ -18,6 +18,7 @@ export function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [isMatch, setIsMatch] = useState<boolean>(true)
   const [errors, setErrors] = useState<{ msg: string }[]>([])
+  const [successfulMessage, setSuccessfulMessage] = useState<string | null>(null);
 
   const handleCheckBoxChange = () => setShowPassword(!showPassword)
 
@@ -47,6 +48,8 @@ export function SignUp() {
 
       console.log('User registration successful:', response.data);
       setErrors([]);
+      setSuccessfulMessage('Usuario registrado exitosamente');
+
     } catch (error: any) {
       console.error('Error registering user:', error.response?.data || error.message);
       if (error.response && error.response.data && error.response.data.errors) {
@@ -54,6 +57,7 @@ export function SignUp() {
       } else {
         setErrors([{ msg: 'Hubo un error al registrar el usuario' }]);
       }
+      setSuccessfulMessage(null);
     }
   };
 
@@ -73,6 +77,11 @@ export function SignUp() {
               {errors.map((error, index) => (
                 <p key={index} className="transition-all ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-3 my-2">{error.msg}</p>
               ))}
+            </section>
+          )}
+          {successfulMessage && (
+            <section className="my-3">
+              <p className="transition-all ease-in-out delay-200 text-sm text-center font-bold bg-green-600 p-3 my-2">{successfulMessage}</p>
             </section>
           )}
           <section className="my-3">
