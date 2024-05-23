@@ -59,7 +59,6 @@ mysql> CREATE DATABASE IF NOT EXISTS downisupDB
 
 
 5. Migrar la Base de Datos (en la carpeta raiz)
-
 ```bash
   cd src/
   npx sequelize-cli db:migrate
