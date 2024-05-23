@@ -30,7 +30,7 @@ exports.obtenerUsuarioPorId = async (req, res) => {
 exports.agregarUsuario = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const nuevoUsuario = await Usuario.create({ username, email, password })
+    const nuevoUsuario = await Usuario.create({ username, email, password });
     console.log('Usuario creado:', nuevoUsuario.toJSON());
     res.status(201).json(nuevoUsuario);
   } catch (error) {
@@ -38,6 +38,7 @@ exports.agregarUsuario = async (req, res) => {
     res.status(500).json({ error: 'Hubo un error al agregar usuario' });
   }
 };
+
 
 exports.actualizarUsuario = async (req, res) => {
   try {
