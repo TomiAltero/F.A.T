@@ -47,8 +47,16 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
   Copiar el archivo .env.example y renombrarlo a .env. Configurar las variables de entorno para la base de datos y otros servicios necesarios.
 
 
+4. **Crear la Base de datos para en tu cuenta local para que te lo detecte el sistema**
+   ```bash
+   mysql -u <usuario> -p
+   Ingrese su contraseña
 
-4. Migrar la Base de Datos (en la carpeta raiz)
+   mysql> CREATE DATABASE IF NOT EXISTS downisupDB 
+   ```
+
+
+6. Migrar la Base de Datos (en la carpeta raiz)
 
 ```bash
   cd src/
