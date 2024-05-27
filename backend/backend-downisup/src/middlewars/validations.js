@@ -5,11 +5,15 @@ const validateUserRegistration = [
     .isString()
     .notEmpty()
     .withMessage('El nombre de usuario es obligatorio')
+    .isLength({ min: 4, max: 20 })
+    .withMessage('El nombre de usuario debe tener entre 4 y 20 caracteres')
+
     .custom(async (value) => {
       const existingUser = await Usuario.findOne({ where: { username: value } });
       if (existingUser) {
         throw new Error('El nombre de usuario ya está en uso');
       }
+      return true;
     }),
 
 
@@ -55,10 +59,13 @@ const validateUserRegistration = [
     .isEmail()
     .withMessage('El email es inválido'),
 
+
   body('password')
     .isString()
     .isLength({ min: 6, max: 20 })
-    .withMessage('La contraseña debe tener entre 6 y 20 caracteres'),
+    .withMessage('La contraseña debe tener entre 6 y 20 caracteres')
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,20}$/)
+    .withMessage('La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número'),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -68,6 +75,8 @@ const validateUserRegistration = [
     next();
   }
 ];
+
+
 
 module.exports = {
   validateUserRegistration
