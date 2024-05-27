@@ -14,8 +14,12 @@ const INITIAL_STATE = {
 
 export function SignUp() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [password, setPassword] = useState<string>('')
-  const [confirmPassword, setConfirmPassword] = useState<string>('')
+  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [nombre, setNombre] = useState<string>('');
+  const [apellido, setApellido] = useState<string>('');
   const [isMatch, setIsMatch] = useState<boolean>(true)
   const [errors, setErrors] = useState<{ msg: string }[]>([])
   const [successfulMessage, setSuccessfulMessage] = useState<string | null>(null);
@@ -32,18 +36,16 @@ export function SignUp() {
     setIsMatch(event.target.value === password);
   };
 
-  const handleFormSubmit = async (event: any) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:5000/api/usuarios', {
         username,
         email,
         password,
+        nombre,
+        apellido
       });
 
       console.log('User registration successful:', response.data);
@@ -65,7 +67,7 @@ export function SignUp() {
     <form onSubmit={handleFormSubmit}>
       <Card className="mt-8 w-[400px]">
         <CardHeader className="flex flex-row justify-center">
-          <Image  src="/favicon.jpg" width={72} height={50} alt="Logo DiU" />
+          <Image src="/logo.jpg" width={72} height={50} alt="Logo DiU" />
         </CardHeader>
         <CardContent>
           {errors.length > 0 && (
@@ -81,38 +83,83 @@ export function SignUp() {
             </section>
           )}
           <section className="my-3 -mt-5">
-
             <section className="flex flex-row space-x-4">
               <article className="space-y-2 my-2">
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">First Name</Label>
-                <Input className="rounded-xl border" id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="nombre">First Name</Label>
+                <Input
+                  className="rounded-xl border"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Ingrese su nombre"
+                  required
+                  type="text"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                />
               </article>
               <article className="space-y-2 my-2">
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">Last Name</Label>
-                <Input className="rounded-xl border" id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="apellido">Last Name</Label>
+                <Input
+                  className="rounded-xl border"
+                  id="apellido"
+                  name="apellido"
+                  placeholder="Ingrese su apellido"
+                  required
+                  type="text"
+                  value={apellido}
+                  onChange={(e) => setApellido(e.target.value)}
+                />
               </article>
             </section>
 
             <article className="space-y-2 my-2">
-              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="email">Email</Label>
-              <Input className="rounded-xl border" id="email" name="email" placeholder="Ingrese su correo electrónico" required type="email" />
+              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="email">Nombre de Usuario</Label>
+              <Input
+                className="rounded-xl border"
+                id="username"
+                name="username"
+                placeholder="Ingrese su nombre de usuario"
+                required
+                type="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </article>
-            <article className="space-y-2 my-2 ">
+
+            <article className="space-y-2 my-2">
+              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="email">Email</Label>
+              <Input
+                className="rounded-xl border"
+                id="email"
+                name="email"
+                placeholder="Ingrese su correo electrónico"
+                required
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </article>
+            <article className="space-y-2 my-2">
               <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Password</Label>
               <article className="space-y-3">
-                <Input id="password" name="password"
+                <Input
+                  id="password"
+                  name="password"
                   className="rounded-xl border"
                   placeholder="Ingrese su contraseña"
                   required
                   type={showPassword ? 'text' : 'password'}
+                  value={password}
                   onChange={handlePasswordChange}
                 />
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Confirm password</Label>
-                <Input id="password2"
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password2">Confirm password</Label>
+                <Input
+                  id="password2"
                   className="rounded-xl border"
                   placeholder="Repita la contraseña"
                   required
                   type={showPassword ? 'text' : 'password'}
+                  value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
                 />
                 <article>
@@ -121,14 +168,23 @@ export function SignUp() {
                 </article>
               </article>
               <article className="flex gap-x-2 items-center">
-                <Input type="checkbox" className="w-auto h-auto" onChange={handleCheckBoxChange} id="show" />
+                <Input
+                  type="checkbox"
+                  className="w-auto h-auto"
+                  onChange={handleCheckBoxChange}
+                  id="show"
+                />
                 <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="show">Show password</Label>
               </article>
             </article>
             <article className="flex justify-center w-full mt-5">
-              <Button disabled={!isMatch} type='submit' className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ">Continue</Button>
+              <Button
+                disabled={!isMatch}
+                type='submit'
+                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Continue
+              </Button>
             </article>
-
           </section>
         </CardContent>
       </Card>

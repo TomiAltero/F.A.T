@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuario');
+const bcrypt = require('bcrypt');
 
 exports.obtenerUsuarios = async (req, res) => {
   try {
@@ -9,8 +10,6 @@ exports.obtenerUsuarios = async (req, res) => {
     res.status(500).json({ error: 'Hubo un error al obtener usuarios' });
   }
 };
-
-
 
 exports.obtenerUsuarioPorId = async (req, res) => {
   try {
@@ -24,13 +23,12 @@ exports.obtenerUsuarioPorId = async (req, res) => {
     console.error('Error al obtener el usuario:', error);
     res.status(500).json({ error: 'Hubo un error al obtener el usuario' });
   }
-}
-
+};
 
 exports.agregarUsuario = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const nuevoUsuario = await Usuario.create({ username, email, password });
+    const { username, email, password, nombre, apellido } = req.body;
+    const nuevoUsuario = await Usuario.create({ username, email, password, nombre, apellido });
     console.log('Usuario creado:', nuevoUsuario.toJSON());
     res.status(201).json(nuevoUsuario);
   } catch (error) {
@@ -39,21 +37,23 @@ exports.agregarUsuario = async (req, res) => {
   }
 };
 
-
 exports.actualizarUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { username, email, password } = req.body;
+    const { username, email, password, nombre, apellido } = req.body;
 
     let usuario = await Usuario.findByPk(id);
-
     if (!usuario) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
     usuario.username = username;
     usuario.email = email;
-    usuario.password = password;
+    if (password) {
+      usuario.password = await bcrypt.hash(password, 10);
+    }
+    usuario.nombre = nombre;
+    usuario.apellido = apellido;
 
     await usuario.save();
 
@@ -64,8 +64,6 @@ exports.actualizarUsuario = async (req, res) => {
     res.status(500).json({ error: 'Hubo un error al actualizar usuario' });
   }
 };
-
-
 
 exports.eliminarUsuario = async (req, res) => {
   try {
@@ -82,3 +80,4 @@ exports.eliminarUsuario = async (req, res) => {
     res.status(500).json({ error: 'Hubo un error al eliminar usuario' });
   }
 };
+

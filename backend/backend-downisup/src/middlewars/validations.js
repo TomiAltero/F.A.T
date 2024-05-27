@@ -1,11 +1,20 @@
 const { body, validationResult } = require('express-validator');
 
 const validateUserRegistration = [
-
   body('username')
     .isString()
-    .isLength({ min: 8, max: 20 })
-    .withMessage('El nombre de usuario debe tener entre 8 y 20 caracteres'),
+    .notEmpty()
+    .withMessage('El nombre de usuario es obligatorio'),
+
+  body('nombre')
+    .isString()
+    .notEmpty()
+    .withMessage('El nombre es obligatorio'),
+
+  body('apellido')
+    .isString()
+    .notEmpty()
+    .withMessage('El apellido es obligatorio'),
 
   body('email')
     .isEmail()
@@ -18,15 +27,14 @@ const validateUserRegistration = [
 
   (req, res, next) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
-    } else {
-      next();
     }
+    next();
   }
 ];
 
 module.exports = {
   validateUserRegistration
 };
+
