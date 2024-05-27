@@ -8,10 +8,6 @@ import Image from "next/image"
 import React, { useState } from "react"
 import axios from "axios"
 
-const INITIAL_STATE = {
-  data: "Hello world =)"
-}
-
 export function SignUp() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [email, setEmail] = useState<string>('');
@@ -85,7 +81,7 @@ export function SignUp() {
           <section className="my-3 -mt-5">
             <section className="flex flex-row space-x-4">
               <article className="space-y-2 my-2">
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="nombre">First Name</Label>
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="nombre">Nombre</Label>
                 <Input
                   className="rounded-xl border"
                   id="nombre"
@@ -98,7 +94,7 @@ export function SignUp() {
                 />
               </article>
               <article className="space-y-2 my-2">
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="apellido">Last Name</Label>
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="apellido">Apellido</Label>
                 <Input
                   className="rounded-xl border"
                   id="apellido"
