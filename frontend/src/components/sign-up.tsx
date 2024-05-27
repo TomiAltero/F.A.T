@@ -63,66 +63,72 @@ export function SignUp() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="w-[500px]">
-        <CardHeader className="flex flex-row justify-between">
-          <Image className="bg-custom-blue" src="/logo-du.png" width={72} height={50} alt="Logo DiU" />
-          <CardTitle className={`text-4xl text-center font-black m-0 ${nunito.className}`}>DOWN IS UP</CardTitle>
+      <Card className="mt-8 w-[400px]">
+        <CardHeader className="flex flex-row justify-center">
+          <Image  src="/favicon.jpg" width={72} height={50} alt="Logo DiU" />
         </CardHeader>
         <CardContent>
-          <section className="flex justify-center">
-            <h1 className={`w-full text-white p-3 rounded-lg text-4xl text-center font-black uppercase ${nunito.className} `}>Regístrate</h1>
-          </section>
           {errors.length > 0 && (
             <section className="my-3">
               {errors.map((error, index) => (
-                <p key={index} className="transition-all ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-3 my-2">{error.msg}</p>
+                <p key={index} className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-3 my-2">{error.msg}</p>
               ))}
             </section>
           )}
           {successfulMessage && (
             <section className="my-3">
-              <p className="transition-all ease-in-out delay-200 text-sm text-center font-bold bg-green-600 p-3 my-2">{successfulMessage}</p>
+              <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-green-600 p-3 my-2">{successfulMessage}</p>
             </section>
           )}
-          <section className="my-3">
-            <article className="space-y-2 my-4">
-              <Label className="text-xl" htmlFor="username">Usuario</Label>
-              <Input id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
+          <section className="my-3 -mt-5">
+
+            <section className="flex flex-row space-x-4">
+              <article className="space-y-2 my-2">
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">First Name</Label>
+                <Input className="rounded-xl border" id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
+              </article>
+              <article className="space-y-2 my-2">
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">Last Name</Label>
+                <Input className="rounded-xl border" id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
+              </article>
+            </section>
+
+            <article className="space-y-2 my-2">
+              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="email">Email</Label>
+              <Input className="rounded-xl border" id="email" name="email" placeholder="Ingrese su correo electrónico" required type="email" />
             </article>
-            <article className="space-y-2 my-4">
-              <Label className="text-xl" htmlFor="email">Correo Electrónico</Label>
-              <Input id="email" name="email" placeholder="Ingrese su correo electrónico" required type="email" />
-            </article>
-            <article className="space-y-2 my-4 ">
-              <Label className="text-xl" htmlFor="password">Contraseña</Label>
+            <article className="space-y-2 my-2 ">
+              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Password</Label>
               <article className="space-y-3">
                 <Input id="password" name="password"
-                  className=""
+                  className="rounded-xl border"
                   placeholder="Ingrese su contraseña"
                   required
                   type={showPassword ? 'text' : 'password'}
                   onChange={handlePasswordChange}
                 />
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Confirm password</Label>
                 <Input id="password2"
-                  className=""
+                  className="rounded-xl border"
                   placeholder="Repita la contraseña"
                   required
                   type={showPassword ? 'text' : 'password'}
                   onChange={handleConfirmPasswordChange}
                 />
                 <article>
-                  {!isMatch ? <p className="transition-all ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-3 my-2">Las contraseñas no coinciden</p>
+                  {!isMatch ? <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-2 my-2">Las contraseñas no coinciden</p>
                     : <p></p>}
                 </article>
               </article>
               <article className="flex gap-x-2 items-center">
                 <Input type="checkbox" className="w-auto h-auto" onChange={handleCheckBoxChange} id="show" />
-                <Label className="text-xs font-semibold text-center items-center" htmlFor="show">Mostrar contraseña</Label>
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="show">Show password</Label>
               </article>
             </article>
-            <article className="flex justify-center">
-              <Button disabled={!isMatch} type='submit' className="font-bold ">Crear Cuenta</Button>
+            <article className="flex justify-center w-full mt-5">
+              <Button disabled={!isMatch} type='submit' className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ">Continue</Button>
             </article>
+
           </section>
         </CardContent>
       </Card>
