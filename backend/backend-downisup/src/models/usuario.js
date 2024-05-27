@@ -23,6 +23,17 @@ const Usuario = sequelize.define('usuarios', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-});
+
+  nombre: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  apellido: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
+}
+);
 
 module.exports = Usuario;

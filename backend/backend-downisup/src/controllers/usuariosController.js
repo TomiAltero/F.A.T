@@ -30,9 +30,9 @@ exports.obtenerUsuarioPorId = async (req, res) => {
 
 exports.agregarUsuario = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, nombre, apellido } = req.body;
     const datoEncriptado = encryptData(password, { generateRandomString });
-    const nuevoUsuario = await Usuario.create({ username, email, password: datoEncriptado });
+    const nuevoUsuario = await Usuario.create({ username, email, password: datoEncriptado, nombre, apellido });
     console.log('Usuario creado:', nuevoUsuario.toJSON());
     res.status(201).json(nuevoUsuario);
   } catch (error) {
@@ -45,7 +45,7 @@ exports.agregarUsuario = async (req, res) => {
 exports.actualizarUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { username, email, password } = req.body;
+    const { username, email, password, nombre, apellido } = req.body;
 
     let usuario = await Usuario.findByPk(id);
 
@@ -58,6 +58,8 @@ exports.actualizarUsuario = async (req, res) => {
     usuario.username = username;
     usuario.email = email;
     usuario.password = nuevoDatoEncriptado;
+    usuario.nombre = nombre
+    usuario.apellido = apellido
 
     await usuario.save();
 
