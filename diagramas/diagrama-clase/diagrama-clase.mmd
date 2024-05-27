@@ -1,0 +1,80 @@
+classDiagram
+    Usuario <|-- Paciente: hereda
+    Usuario <|-- Administrador: hereda
+    Usuario <|-- Especialista: hereda
+    Turno <-- Estado: tiene 
+    Paciente <-- fichaMedica: tiene 
+    Paciente <-- HistoriaClinica: tiene
+    Paciente <-- Turno: tiene 
+
+    class Usuario {
+        -String nombre
+        -String apellido
+        -String correo
+        -String contraseña
+        -Int telefono
+        -String direccion
+        -String ciudad
+        -String pais
+        -Date fechaNacimiento
+    }
+
+
+    class Turno {
+        -Date fecha
+        -Time hora
+        -String especialista
+        -String paciente
+        -Estado estado
+    }
+
+    class Estado {
+        -String estado
+        -String descripcion
+    }
+
+    class Paciente {
+        -String nombre
+        -String apellido
+        -Int dni
+    }
+
+    class Especialista {
+        -String nombre
+        -String apellido
+        -String especialidad
+    }
+
+
+    class Administrador {
+        -String nombre
+        -String apellido
+        -String correo
+        -String contraseña
+        -Int telefono
+        -String direccion
+        -String ciudad
+        -String pais
+        -Date fechaNacimiento
+    }
+
+    class fichaMedica {
+        -Paciente paciente
+        -Especialista especialista
+        -Date fecha
+        -String motivoConsulta
+        -String antecedentes
+        -String examenFisico
+        -String diagnostico
+        -String observaciones
+    }
+
+    class HistoriaClinica {
+        -Paciente paciente
+        -Especialista especialista
+        -Date fecha
+        -String antecedentes
+        -String examenFisico
+        -String diagnostico
+        -String observaciones
+    }
