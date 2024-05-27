@@ -65,7 +65,7 @@ export function SignUp() {
     <form onSubmit={handleFormSubmit}>
       <Card className="mt-8 w-[400px]">
         <CardHeader className="flex flex-row justify-center">
-          <Image  src="/favicon.jpg" width={72} height={50} alt="Logo DiU" />
+          <Image  src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
         </CardHeader>
         <CardContent>
           {errors.length > 0 && (
@@ -84,11 +84,11 @@ export function SignUp() {
 
             <section className="flex flex-row space-x-4">
               <article className="space-y-2 my-2">
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">First Name</Label>
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">Nombre</Label>
                 <Input className="rounded-xl border" id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
               </article>
               <article className="space-y-2 my-2">
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">Last Name</Label>
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="username">Apellido</Label>
                 <Input className="rounded-xl border" id="username" name="username" placeholder="Ingrese su usuario" required type="text" />
               </article>
             </section>
@@ -98,7 +98,7 @@ export function SignUp() {
               <Input className="rounded-xl border" id="email" name="email" placeholder="Ingrese su correo electrónico" required type="email" />
             </article>
             <article className="space-y-2 my-2 ">
-              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Password</Label>
+              <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Contraseña</Label>
               <article className="space-y-3">
                 <Input id="password" name="password"
                   className="rounded-xl border"
@@ -107,7 +107,7 @@ export function SignUp() {
                   type={showPassword ? 'text' : 'password'}
                   onChange={handlePasswordChange}
                 />
-                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Confirm password</Label>
+                <Label className="block text-xs font-medium leading-6 text-gray-900" htmlFor="password">Confirmar contraseña</Label>
                 <Input id="password2"
                   className="rounded-xl border"
                   placeholder="Repita la contraseña"
@@ -116,7 +116,7 @@ export function SignUp() {
                   onChange={handleConfirmPasswordChange}
                 />
                 <article>
-                  {!isMatch ? <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-2 my-2">Las contraseñas no coinciden</p>
+                  {!isMatch ? <p className=" bg-red-600 transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold p-2 my-2 text-white">Las contraseñas no coinciden</p>
                     : <p></p>}
                 </article>
               </article>
