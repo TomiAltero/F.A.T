@@ -1,6 +1,6 @@
-const express = require('express');
+// helpers/encryption.js
 const crypto = require('crypto');
-const { generateRandomString } = require('../helpers/cryptoUtils');
+const { generateRandomString } = require('./cryptoUtils');
 
 function encryptData(data, key) {
   const cipher = crypto.createCipher('aes192', key);

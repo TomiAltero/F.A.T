@@ -1,5 +1,6 @@
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
+const { encryptData, decryptData } = require('../helpers/encryption');
 
 exports.obtenerUsuarios = async (req, res) => {
   try {
@@ -28,7 +29,18 @@ exports.obtenerUsuarioPorId = async (req, res) => {
 exports.agregarUsuario = async (req, res) => {
   try {
     const { username, email, password, nombre, apellido } = req.body;
-    const nuevoUsuario = await Usuario.create({ username, email, password, nombre, apellido });
+
+    // Hash de la contraseña
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const nuevoUsuario = await Usuario.create({
+      username,
+      email,
+      password: hashedPassword,
+      nombre,
+      apellido
+    });
+
     console.log('Usuario creado:', nuevoUsuario.toJSON());
     res.status(201).json(nuevoUsuario);
   } catch (error) {
@@ -46,8 +58,6 @@ exports.actualizarUsuario = async (req, res) => {
     if (!usuario) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-
-    const nuevoDatoEncriptado = encryptData(password, 'tu_clave_de_encriptacion');
 
     usuario.username = username;
     usuario.email = email;
