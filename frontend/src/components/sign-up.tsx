@@ -63,7 +63,7 @@ export function SignUp() {
     <form onSubmit={handleFormSubmit}>
       <Card className="mt-8 w-[400px]">
         <CardHeader className="flex flex-row justify-center">
-          <Image src="/logo.jpg" width={72} height={50} alt="Logo DiU" />
+          <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
         </CardHeader>
         <CardContent>
           {errors.length > 0 && (
