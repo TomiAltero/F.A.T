@@ -41,18 +41,18 @@ class Validator {
 
 const validateUserRegistration = [
   ...new Validator('username')
-    .isLength(3, 20)
+    .isLength(3, 20, 'El nombre de usuario debe tener entre 3 y 20 caracteres')
     .matches(/^[A-Za-z0-9_]+$/, 'El nombre de usuario solo puede contener letras, números y guiones bajos')
     .getValidators(),
 
   ...new Validator('nombre')
-    .isLength(2, 20)
+    .isLength(2, 20, 'El nombre debe tener entre 2 y 20 caracteres')
     .matches(/^[A-Za-z]+$/, 'El nombre solo puede contener letras')
     .custom(value => value.charAt(0) === value.charAt(0).toUpperCase(), 'La primera letra del nombre debe ser mayúscula')
     .getValidators(),
 
   ...new Validator('apellido')
-    .isLength(2, 20)
+    .isLength(2, 20, 'El apellido debe tener entre 2 y 20 caracteres')
     .matches(/^[A-Za-z]+$/, 'El apellido solo puede contener letras')
     .custom(value => value.charAt(0) === value.charAt(0).toUpperCase(), 'La primera letra del apellido debe ser mayúscula')
     .getValidators(),
