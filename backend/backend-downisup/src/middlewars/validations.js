@@ -1,75 +1,85 @@
 const { body, validationResult } = require('express-validator');
 
-const validateUserRegistration = [
-  body('username')
-    .isString()
-    .notEmpty()
-    .withMessage('El nombre de usuario es obligatorio')
-    .isLength({ min: 3, max: 20 })
-    .withMessage('El nombre de usuario debe tener entre 3 y 20 caracteres')
-    .matches(/^[A-Za-z0-9_]+$/)
-    .withMessage('El nombre de usuario solo puede contener letras, números y guiones bajos'),
+class Validator {
+  constructor(field) {
+    this.field = field;
+    this.validators = [body(field).isString().notEmpty().withMessage(`${field} es obligatorio`)];
+  }
 
-  body('nombre')
-    .isString()
-    .notEmpty()
-    .withMessage('El nombre es obligatorio')
-    .isLength({ min: 2, max: 20 })
-    .withMessage('El nombre debe tener entre 2 y 20 caracteres')
-    .matches(/^[A-Za-z]+$/)
-    .withMessage('El nombre solo puede contener letras')
-    .custom(value => {
-      if (value.charAt(0) !== value.charAt(0).toUpperCase()) {
-        throw new Error('La primera letra del nombre debe ser mayúscula');
-      }
-      return true;
-    }),
+  isLength(min, max) {
+    this.validators.push(body(this.field).isLength({ min, max }).withMessage(`${this.field} debe tener entre ${min} y ${max} caracteres`));
+    return this;
+  }
 
-  body('apellido')
-    .isString()
-    .notEmpty()
-    .withMessage('El apellido es obligatorio')
-    .isLength({ min: 2, max: 20 })
-    .withMessage('El apellido debe tener entre 2 y 20 caracteres')
-    .matches(/^[A-Za-z]+$/)
-    .withMessage('El apellido solo puede contener letras')
-    .custom(value => {
-      if (value.charAt(0) !== value.charAt(0).toUpperCase()) {
-        throw new Error('La primera letra del apellido debe ser mayúscula');
-      }
-      return true;
-    }),
+  matches(regex, message) {
+    this.validators.push(body(this.field).matches(regex).withMessage(message));
+    return this;
+  }
 
-  body('email')
-    .isEmail()
-    .withMessage('El email es inválido')
-    .normalizeEmail(),
+  custom(validationFn, message) {
+    this.validators.push(body(this.field).custom(validationFn).withMessage(message));
+    return this;
+  }
 
-  body('password')
-    .isString()
-    .notEmpty()
-    .withMessage('La contraseña es obligatoria')
-    .isLength({ min: 6, max: 20 })
-    .withMessage('La contraseña debe tener entre 6 y 20 caracteres')
-    .matches(/[A-Z]/)
-    .withMessage('La contraseña debe contener al menos una letra mayúscula')
-    .matches(/[a-z]/)
-    .withMessage('La contraseña debe contener al menos una letra minúscula')
-    .matches(/[0-9]/)
-    .withMessage('La contraseña debe contener al menos un número')
-    .matches(/[@$!%*?&#]/)
-    .withMessage('La contraseña debe contener al menos un carácter especial (@, $, !, %, *, ?, &, #)'),
+  addValidator(validator) {
+    this.validators.push(validator);
+    return this;
+  }
 
-  (req, res, next) => {
+  static validate(req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     next();
   }
+
+  getValidators() {
+    return this.validators;
+  }
+}
+
+const validateUserRegistration = [
+  ...new Validator('username')
+    .isLength(3, 20, 'El nombre de usuario debe tener entre 3 y 20 caracteres')
+    .matches(/^[A-Za-z0-9_]+$/, 'El nombre de usuario solo puede contener letras, números y guiones bajos')
+    .getValidators(),
+
+  ...new Validator('nombre')
+    .isLength(2, 20, 'El nombre debe tener entre 2 y 20 caracteres')
+    .matches(/^[A-Za-z]+$/, 'El nombre solo puede contener letras')
+    .custom(value => value.charAt(0) === value.charAt(0).toUpperCase(), 'La primera letra del nombre debe ser mayúscula')
+    .getValidators(),
+
+  ...new Validator('apellido')
+    .isLength(2, 20, 'El apellido debe tener entre 2 y 20 caracteres')
+    .matches(/^[A-Za-z]+$/, 'El apellido solo puede contener letras')
+    .custom(value => value.charAt(0) === value.charAt(0).toUpperCase(), 'La primera letra del apellido debe ser mayúscula')
+    .getValidators(),
+
+  ...new Validator('email')
+    .addValidator(body('email').isEmail().withMessage('El email es inválido').normalizeEmail())
+    .getValidators(),
+
+  ...new Validator('password')
+    .matches(/[A-Z]/, 'La contraseña debe contener al menos una letra mayúscula')
+    .matches(/[a-z]/, 'La contraseña debe contener al menos una letra minúscula')
+    .matches(/[0-9]/, 'La contraseña debe contener al menos un número')
+    .matches(/[@$!%*?&#]/, 'La contraseña debe contener al menos un carácter especial (@, $, !, %, *, ?, &, #)')
+    .getValidators(),
+
+  Validator.validate
 ];
 
 module.exports = {
   validateUserRegistration
 };
+
+
+
+
+
+
+
+
 
