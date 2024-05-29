@@ -31,8 +31,8 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ```bash
     git clone git@github.com:TomiAltero/downisup.git 
-    git checkout features-backend
     cd backend
+    cd backend-downisup
 ```
 
 
@@ -43,8 +43,18 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 ```
 
 3. **Configurar el archivo .env**
+  
+    - Crear un archivo .env dentro del proyecto backend/backend-downisup
+    - Copiar esta estructura y completar los datos para poder acceder a la base de datos y tomar su configuracion
 
-    Copiar el archivo .env.example y renombrarlo a .env. Configurar las variables de entorno para la base de datos y otros servicios necesarios.
+    ```bash
+      DB_HOST = ingrese su host
+      DB_NAME = ingrese el nombre de la base de datos
+      DB_USER = ingrese su usuario
+      DB_PASS = ingrese su contraseña
+      DB_PORT = ingrese el puerto
+      PORT = ingrese el puerto en el que se va a ejecutar el servidor
+    ```
 
 
 <br>
