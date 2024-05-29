@@ -31,8 +31,8 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ```bash
     git clone git@github.com:TomiAltero/downisup.git 
-    git checkout features-backend
     cd backend
+    cd backend-downisup
 ```
 
 
