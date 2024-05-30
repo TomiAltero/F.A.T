@@ -4,9 +4,10 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ## Tecnologias utilizadas
 #### BackEnd
-      - PHP
       - MySQL
-      - Laravel
+      - JavaScript
+      - Node JS
+      - Express JS 
 
 #### FrontEnd
       - HTML
@@ -19,8 +20,7 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ## Instalacion y Ejecucion del Sistema:
   - Node.js (v14.x o superior)
-  - Composer
-  - PHP (8.3)
+  - Express JS
   - MySQL (gestor de base de datos)
   
 
@@ -31,32 +31,47 @@ DownIsUp es una fundación dedicada al seguimiento y apoyo en terapias para chic
 
 ```bash
     git clone git@github.com:TomiAltero/downisup.git 
-    git checkout features-backend
-    cd back-end
+    cd backend
+    cd backend-downisup
 ```
 
 
 2. **Instalar dependecias**  
 
 ```bash
-    composer install
+    npm install
 ```
 
 3. **Configurar el archivo .env**
+  
+    - Crear un archivo .env dentro del proyecto backend/backend-downisup
+    - Copiar esta estructura y completar los datos para poder acceder a la base de datos y tomar su configuracion
 
-  Copiar el archivo .env.example y renombrarlo a .env. Configurar las variables de entorno para la base de datos y otros servicios necesarios.
+    ```bash
+      DB_HOST = ingrese su host
+      DB_NAME = ingrese el nombre de la base de datos
+      DB_USER = ingrese su usuario
+      DB_PASSWORD = ingrese su contraseña
+      DB_PORT = ingrese el puerto
+      PORT = ingrese el puerto en el que se va a ejecutar el servidor
+    ```
 
 
-4. **Generar clave de la aplicacion:**
+<br>
 
+4. **Crear la Base de datos para en tu cuenta local para que te lo detecte el sistema**
+   
 ```bash
-    php artisan key:generate
+mysql -u <usuario> -p
+Ingrese su contraseñ
+mysql> CREATE DATABASE IF NOT EXISTS downisupDB 
 ```
 
-5. **Iniciar el servidor de desarrollo**
 
+5. Migrar la Base de Datos (en la carpeta raiz)
 ```bash
-  php artisan serve
+  cd src/
+  npx sequelize-cli db:migrate
 ```
 
 

@@ -1,62 +1,103 @@
 erDiagram
-    
-    TipoUsuario {
-        int idTipoUsuario PK
-        string nombre
-        string descripcion
-    }
-
-    Genero {
-        int idGenero PK
-        string nombre
-    }
-
-    Especialidad {
-        int idEspecialidad PK
-        string nombre
-    }
-
 
     Usuario {
         int idUsuario PK
-        int idTipoUsuario FK
-        int idGenero FK
-        int idEspecialidad FK 
-        string nombre
-        string apellido
-        string email
-        string telefono
-        string direccion
-        string password
-        int dni
+        varchar nombre
+        varchar apellido
+        varchar email
+        varchar contrasenia
+        varchar telefono
         date fechaNacimiento
+        int idTipoUsuario FK
+        int idDireccion FK
+    }
+    
+    TipoUsuario {
+        int idTipoUsuario PK
+        varchar nombre
+        text descripcion
     }
 
+    Especialista {
+        int matricula PK
+        int idUsuario FK
+        int idEspecialidad FK
+
+    }
+    
+    Especialidad {
+        int idEspecialidad PK
+        varchar nombre
+        text descripcion
+    }
+    
     Turno {
         int idTurno PK
-        int idUsuario FK
+        int matriculaEspecialista FK
         date fecha
-        time hora
-        string motivo
-    }   
-
-    Consulta {
-        int idConsulta PK
-        int idUsuario FK
-        date fecha
-        time hora
-        string motivo
-        string diagnostico
-        string tratamiento
+        time horaInicioReal
+        time horaFinReal
+        time horaInicioEstimada
+        time horaFinEstimada
+        int idEstadoTurno FK
     }
 
-    HistorialClinica {
-        int idHistoriaClinica PK
-        int idUsuario FK
-        string antecedentes
-        string alergias
-        string medicamentos
-        string enfermedades
+    EstadoTurno {
+        int idEstadoTurno PK
+        varchar nombre
+        text descripcion
     }
 
-    
+    FichaPaciente {
+        int idFichaPaciente PK
+        int idUsuario FK
+        float altura
+        float peso
+        int idObraSocial FK
+        int idGrupoSanguineo FK
+        int idAntecedentePrevio FK
+        
+    }
+
+    AntecedentePrevio {
+        int idAntecedentePrevio PK
+        int idFichaPaciente FK
+        varchar nombre
+        text descripcion
+        date fecha
+    }
+    GrupoSanguineo {
+        int idGrupoSanguineo PK
+        varchar Factor
+        varchar Grupo
+
+    }
+    ObraSocial {
+        int idObraSocial PK
+        varchar nombre
+        text descripcion
+    }
+    Direccion {
+        int idDireccion PK
+        varchar calle
+        varchar numero
+        varchar codigoPostal
+        int idCiudad
+    }
+
+    Ciudad {
+        int idCiudad PK
+        varchar nombre
+        int idProvincia FK
+    }
+
+    Provincia {
+        int idProvincia PK
+        varchar nombre
+        int idPais FK
+    }
+
+    Pais {
+        int idPais PK
+        varchar nombre
+    }

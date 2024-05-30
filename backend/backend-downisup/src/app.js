@@ -3,7 +3,7 @@ const sequelize = require('./config/database');
 const usuariosRoutes = require('./routes/usuariosRoutes');
 const app = express();
 const port = process.env.PORT || 5000;
-const cors = require('cors'); // Importa el middleware cors
+const cors = require('cors');
 
 app.use(express.json());
 app.use(cors());
