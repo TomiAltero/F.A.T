@@ -11,27 +11,51 @@ import Link from "next/link"
 import Image from "next/image"
 export function LogIn() {
   return (
-    <Card className="w-96 px-10 py-3">
-      <CardHeader className="flex flex-row justify-between">
-        <Image className="bg-custom-blue" src="/logo-du.png" width={72} height={50} alt="Logo DiU"/>
-        <CardTitle className="text-4xl text-center font-black">DOWN IS UP</CardTitle>
+    <Card className="w-[400px]">
+      <CardHeader className="flex flex-row justify-center">
+        <Image  src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label className="text-xl" htmlFor="username">Usuario</Label>
-          <Input id="username" placeholder="Ingrese su usuario" required type="text" />
-        </div>
-        <div className="space-y-2">
-          <Label className="text-xl" htmlFor="password">Contraseña</Label>
-          <Input id="password" className="" placeholder="Ingrese su contraseña"  required type="password"/>
-        </div>
+      <CardContent className="px-7">
+        <section className="my-3 -mt-5">
+          <article className="space-y-2 my-2">
+            <Label className="block text-sm leading-6 text-gray-900 font-semibold">Email</Label>
+            <Input 
+            className="rounded-xl border"
+            id="email"
+            name="email"
+            placeholder="Ingrese su email"
+            required
+            type="email"
+            />
+          </article>
+          <article className="space-y-2 my-2">
+            <Label className="block text-sm leading-6 text-gray-900 font-semibold">Contraseña</Label>
+            <Input 
+            className="rounded-xl border"
+            id="email"
+            name="email"
+            placeholder="Ingrese su email"
+            required
+            type="password"
+            />
+          </article>
+          <article className="flex justify-center w-full mt-5">
+              <Button
+                variant="secondary"
+                type='submit'
+                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Continuar
+              </Button>
+
+          </article>
+          <article className="flex justify-center items-center">
+            <Link className="text-sm p-4" href="/signup">
+              No tienes cuenta? Registrate
+            </Link>
+          </article>
+        </section>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full hover:bg-blue-500 transition-colors text-xl">Ingresar</Button>
-      <Link href="/signup" className="text-center text-sm">
-        ¿No tienes cuenta? Crear una cuenta
-      </Link>
-      </CardFooter>
+
     </Card>
   )
 }
