@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import NavBar from "@/components/nav-bar";
 import "@/app/globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { opensans } from "@/components/ui/fonts";
 
 export const metadata: Metadata = {
   title: "Down Is Up",
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} h-[100vh] text-2xl`}>
+      <body className={`${opensans.className} h-[100vh] text-2xl`}>
         <NavBar />
         {children}
       </body>
