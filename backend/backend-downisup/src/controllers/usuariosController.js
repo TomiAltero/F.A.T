@@ -1,5 +1,6 @@
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 
 class UsuarioController {
   async obtenerUsuarios(req, res) {
@@ -91,6 +92,32 @@ class UsuarioController {
       res.status(500).json({ error: 'Hubo un error al eliminar usuario' });
     }
   }
+
+  async loginUsuario(req, res) {
+    const { username, password } = req.body;
+
+    try {
+      const usuario = await Usuario.findOne({ where: { username } });
+
+      if (!usuario) {
+        return res.status(401).json({ error: 'Credenciales inválidas' });
+      }
+
+      const isMatch = await bcrypt.compare(password, usuario.password);
+
+      if (!isMatch) {
+        return res.status(401).json({ error: 'Credenciales inválidas' });
+      }
+
+      const token = jwt.sign({ id: usuario.id, username: usuario.username }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+
+      res.json({ token });
+    } catch (error) {
+      console.error('Error en el login:', error);
+      res.status(500).json({ error: 'Hubo un error en el login' });
+    }
+  }
+
 }
 
 module.exports = new UsuarioController();
