@@ -17,6 +17,14 @@ classDiagram
         -String ciudad
         -String pais
         -Date fechaNacimiento
+
+        -crearCuenta()
+        -login()
+        -logout()
+        -solicitarTurno()
+        -cancelarTurno()
+        -verHistoriaClinica()
+
     }
 
 
@@ -26,6 +34,12 @@ classDiagram
         -String especialista
         -String paciente
         -Estado estado
+
+        -crearTurno()
+        -confirmarTurno()
+        -verTurno()
+        -cancelarTurno()
+        -reprogramarTurno()
     }
 
     class Estado {
@@ -37,12 +51,20 @@ classDiagram
         -String nombre
         -String apellido
         -Int dni
+
+        -verFichaMedica()
+        -verHistoriaClinica()
+        -verTurno()
+        -solicitarTurno()
     }
 
     class Especialista {
         -String nombre
         -String apellido
         -String especialidad
+
+        -verFichaMedica()
+        -verHistoriaClinica()
     }
 
 
@@ -56,6 +78,10 @@ classDiagram
         -String ciudad
         -String pais
         -Date fechaNacimiento
+
+        -verFichaMedica()
+        -verHistoriaClinica()
+        -verTurno()
     }
 
     class fichaMedica {
@@ -67,6 +93,41 @@ classDiagram
         -String examenFisico
         -String diagnostico
         -String observaciones
+
+        -crearFichaMedica()
+        -verFichaMedica()
+        -guardarFichaMedica()
+
+    }
+
+    class Medicameto {
+        -String nombre
+        -String descripcion
+        -String dosis
+        -String frecuencia
+        -String duracion
+    }
+
+    class antecedentes {
+        -String enfermedades
+        -String alergias
+        -String cirugias
+        -String traumatismos
+        -String hospitalizaciones
+    }
+
+    class examenFisico {
+        -String peso
+        -String altura
+        -String temperatura
+        -String presionArterial
+        -String frecuenciaCardiaca
+        -String frecuenciaRespiratoria
+    }
+
+    class diagnostico {
+        -String diagnostico
+        -String tratamiento
     }
 
     class HistoriaClinica {
@@ -77,4 +138,7 @@ classDiagram
         -String examenFisico
         -String diagnostico
         -String observaciones
+        -Medicameto medicameto
+
+        
     }
