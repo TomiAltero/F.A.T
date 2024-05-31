@@ -80,10 +80,10 @@ export function SignUp() {
           )}
           <section className="my-3 -mt-5">
             <section className="flex flex-row space-x-4">
-              <article className="space-y-2 my-2">
-                <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="nombre">Nombre</Label>
+              <article className="my-2">
+                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="nombre">Nombre</Label>
                 <Input
-                  className="rounded-xl border"
+                  className="border"
                   id="nombre"
                   name="nombre"
                   placeholder="Ingrese su nombre"
@@ -93,10 +93,10 @@ export function SignUp() {
                   onChange={(e) => setNombre(e.target.value)}
                 />
               </article>
-              <article className="space-y-2 my-2">
-                <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="apellido">Apellido</Label>
+              <article className="my-2">
+                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="apellido">Apellido</Label>
                 <Input
-                  className="rounded-xl border"
+                  className="border"
                   id="apellido"
                   name="apellido"
                   placeholder="Ingrese su apellido"
@@ -108,10 +108,10 @@ export function SignUp() {
               </article>
             </section>
 
-            <article className="space-y-2 my-2">
-              <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="email">Nombre de Usuario</Label>
+            <article className="my-2">
+              <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="email">Nombre de Usuario</Label>
               <Input
-                className="rounded-xl border"
+                className="border"
                 id="username"
                 name="username"
                 placeholder="Ingrese su nombre de usuario"
@@ -122,10 +122,10 @@ export function SignUp() {
               />
             </article>
 
-            <article className="space-y-2 my-2">
-              <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="email">Email</Label>
+            <article className="my-2">
+              <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="email">Email</Label>
               <Input
-                className="rounded-xl border"
+                className="border"
                 id="email"
                 name="email"
                 placeholder="Ingrese su correo electrónico"
@@ -135,23 +135,23 @@ export function SignUp() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </article>
-            <article className="space-y-2 my-2">
-              <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="password">Contraseña</Label>
+            <article className="my-2">
+              <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="password">Contraseña</Label>
               <article className="space-y-3">
                 <Input
                   id="password"
                   name="password"
-                  className="rounded-xl border"
+                  className="border"
                   placeholder="Ingrese su contraseña"
                   required
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={handlePasswordChange}
                 />
-                <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="password2">Confirmar Contraseña</Label>
+                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="password2">Confirmar Contraseña</Label>
                 <Input
                   id="password2"
-                  className="rounded-xl border"
+                  className="border"
                   placeholder="Repita la contraseña"
                   required
                   type={showPassword ? 'text' : 'password'}
@@ -170,7 +170,7 @@ export function SignUp() {
                   onChange={handleCheckBoxChange}
                   id="show"
                 />
-                <Label className="block text-[14px] font-medium leading-6 text-gray-900" htmlFor="show">Mostrar Contraseña</Label>
+                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="show">Mostrar Contraseña</Label>
               </article>
             </article>
             <article className="flex justify-center w-full mt-5">

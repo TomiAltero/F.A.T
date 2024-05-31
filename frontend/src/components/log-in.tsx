@@ -17,10 +17,10 @@ export function LogIn() {
       </CardHeader>
       <CardContent className="px-7">
         <section className="my-3 -mt-5">
-          <article className="space-y-2 my-2">
-            <Label className="block text-sm leading-6 text-gray-900 font-semibold">Email</Label>
+          <article className="my-2">
+            <Label className="block text-sm leading-6 text-custom-blue">Email</Label>
             <Input 
-            className="rounded-xl border"
+            className="border mt-1"
             id="email"
             name="email"
             placeholder="Ingrese su email"
@@ -28,10 +28,10 @@ export function LogIn() {
             type="email"
             />
           </article>
-          <article className="space-y-2 my-2">
-            <Label className="block text-sm leading-6 text-gray-900 font-semibold">Contraseña</Label>
+          <article className="my-2">
+            <Label className="block text-sm leading-6 text-custom-blue">Contraseña</Label>
             <Input 
-            className="rounded-xl border"
+            className="border mt-1"
             id="email"
             name="email"
             placeholder="Ingrese su email"

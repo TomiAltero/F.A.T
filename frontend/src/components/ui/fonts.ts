@@ -12,5 +12,5 @@ export const nunito = Nunito({
 
 export const opensans = Open_Sans({
     subsets : ["latin"],
-    weight : ["400", "700", "800"]
+    weight : ["400", "700", "800", "300"]
 })

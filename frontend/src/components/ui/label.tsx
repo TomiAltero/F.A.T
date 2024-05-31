@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import { opensans } from "./fonts"
 
 const labelVariants = cva(
-  `text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${opensans.className}`
+  `text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${opensans.className}`
 )
 
 const Label = React.forwardRef<
