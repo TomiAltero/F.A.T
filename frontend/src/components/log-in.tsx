@@ -11,7 +11,7 @@ import Link from "next/link"
 import Image from "next/image"
 export function LogIn() {
   return (
-    <Card className="w-[400px]">
+    <Card className="-mt-8 w-[350px]">
       <CardHeader className="flex flex-row justify-center">
         <Image  src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
       </CardHeader>

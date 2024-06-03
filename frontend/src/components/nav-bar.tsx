@@ -66,7 +66,7 @@ export default function NavBar () {
                   {routes.map((route) => (
                     <a key={route.name}
                     href={route.route}
-                    className={`${pathname === route.route ? "bg-gray-900" : ""} text-white rounded-md px-2 py-2 text-base font-medium hover:bg-gray-900`}>
+                    className={`${pathname === route.route ? "bg-gray-500" : ""} text-white rounded-md px-2 py-2 text-sm font-medium hover:bg-blue-800`}>
                       {route.name}
                     </a>)
                   )}

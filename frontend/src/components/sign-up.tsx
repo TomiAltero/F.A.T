@@ -61,7 +61,7 @@ export function SignUp() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="mt-8 w-[600px]">
+      <Card className="mt-8 w-[400px]">
         <CardHeader className="flex flex-row justify-center">
           <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
         </CardHeader>
@@ -81,7 +81,7 @@ export function SignUp() {
           <section className="my-3 -mt-5">
             <section className="flex flex-row space-x-4">
               <article className="my-2">
-                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="nombre">Nombre</Label>
+                <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="nombre">Nombre</Label>
                 <Input
                   className="border"
                   id="nombre"
@@ -94,7 +94,7 @@ export function SignUp() {
                 />
               </article>
               <article className="my-2">
-                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="apellido">Apellido</Label>
+                <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="apellido">Apellido</Label>
                 <Input
                   className="border"
                   id="apellido"
@@ -109,7 +109,7 @@ export function SignUp() {
             </section>
 
             <article className="my-2">
-              <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="email">Nombre de Usuario</Label>
+              <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="email">Nombre de Usuario</Label>
               <Input
                 className="border"
                 id="username"
@@ -123,7 +123,7 @@ export function SignUp() {
             </article>
 
             <article className="my-2">
-              <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="email">Email</Label>
+              <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="email">Email</Label>
               <Input
                 className="border"
                 id="email"
@@ -136,7 +136,7 @@ export function SignUp() {
               />
             </article>
             <article className="my-2">
-              <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="password">Contraseña</Label>
+              <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="password">Contraseña</Label>
               <article className="space-y-3">
                 <Input
                   id="password"
@@ -148,7 +148,7 @@ export function SignUp() {
                   value={password}
                   onChange={handlePasswordChange}
                 />
-                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="password2">Confirmar Contraseña</Label>
+                <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="password2">Confirmar Contraseña</Label>
                 <Input
                   id="password2"
                   className="border"
@@ -170,7 +170,7 @@ export function SignUp() {
                   onChange={handleCheckBoxChange}
                   id="show"
                 />
-                <Label className="block text-[14px] leading-6 text-gray-900" htmlFor="show">Mostrar Contraseña</Label>
+                <Label className="block text-[10px] leading-6 text-grey-900" htmlFor="show">Mostrar Contraseña</Label>
               </article>
             </article>
             <article className="flex justify-center w-full mt-5">
@@ -178,7 +178,7 @@ export function SignUp() {
                 variant={isMatch ? 'secondary' : 'ghost'}
                 disabled={!isMatch}
                 type='submit'
-                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                className="w-full rounded-2xl px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Continuar
               </Button>
             </article>
