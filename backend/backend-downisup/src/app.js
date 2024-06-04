@@ -1,3 +1,6 @@
+require('dotenv').config();
+console.log('Token Secret:', process.env.TOKEN_SECRET);
+
 const express = require('express');
 const sequelize = require('./config/database');
 const usuariosRoutes = require('./routes/usuariosRoutes');
