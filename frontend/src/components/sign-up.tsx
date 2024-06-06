@@ -5,6 +5,10 @@ import React, { useState } from "react"
 import axios from "axios"
 import InputAdornments from "./ui/inputAdornments";
 import TextField from '@mui/material/TextField';
+import 'react-toastify/dist/ReactToastify.css';
+import "toastify-js/src/toastify.css";
+import Toastify from "toastify-js";
+
 
 export function SignUp() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -17,15 +21,19 @@ export function SignUp() {
   const [isMatch, setIsMatch] = useState<boolean>(true)
   const [errors, setErrors] = useState<{ msg: string }[]>([])
   const [successfulMessage, setSuccessfulMessage] = useState<string | null>(null);
+  const [registrationSuccess, setRegistrationSuccess] = useState<boolean>(false);
+
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setIsMatch(event.target.value === confirmPassword);
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    setIsMatch(newPassword === confirmPassword);
   };
 
   const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(event.target.value);
-    setIsMatch(event.target.value === password);
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    setIsMatch(password === newConfirmPassword);
   };
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,12 +52,35 @@ export function SignUp() {
       setErrors([]);
       setSuccessfulMessage('Usuario registrado exitosamente');
 
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setNombre('');
+      setApellido('');
+      setIsMatch(true);
+
+
+      Toastify({
+        text: "Usuario registrado exitosamente",
+        duration: 6000,
+        position: "right",
+        style: {
+          background: "#009933",
+          color: "#FFFFFF",
+          fontSize: "14px",
+          padding: "10px",
+          borderRadius: "4px",
+          fontWeight: "bold",
+          marginTop: "70px",
+        },
+      }).showToast();
     } catch (error: any) {
       console.error('Error registrando el usuario:', error);
       setErrors([{ msg: error.response.data.message }]);
+      toast.error('Error registrando el usuario');
     }
   };
-
   return (
     <form onSubmit={handleFormSubmit}>
       <Card className="max-w-md mx-auto mt-8">
@@ -114,7 +145,7 @@ export function SignUp() {
                 InputLabelProps={{ required: false }}
               />
             </article>
-            
+
             <InputAdornments />
 
             <article>
@@ -137,3 +168,4 @@ export function SignUp() {
     </form>
   );
 }
+
