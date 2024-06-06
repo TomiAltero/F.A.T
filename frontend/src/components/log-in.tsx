@@ -14,6 +14,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
+import "toastify-js/src/toastify.css";
+import Toastify from "toastify-js";
 
 export function LogIn() {
   const [username, setUsername] = useState("");
@@ -36,6 +39,22 @@ export function LogIn() {
       );
       console.log("Respuesta de inicio de sesión:", response.data);
       setMessage({ text: "Inicio de sesión exitoso", isSuccess: true });
+
+      // Mostrar el aviso de Toastify para el inicio de sesión exitoso
+      Toastify({
+        text: "Inicio de sesión exitoso",
+        duration: 6000,
+        position: "right",
+        style: {
+          background: "#009933",
+          color: "#FFFFFF",
+          fontSize: "14px",
+          padding: "10px",
+          borderRadius: "4px",
+          fontWeight: "bold",
+          marginTop: "70px",
+        },
+      }).showToast();
 
       localStorage.setItem("token", response.data.token);
     } catch (error: any) {
@@ -90,13 +109,6 @@ export function LogIn() {
             onChange={handlePasswordChange}
           />
         </div>
-        {message.text && (
-          <p
-            className={`text-center ${message.isSuccess ? "text-green-500" : "text-red-500"}`}
-          >
-            {message.text}
-          </p>
-        )}
       </CardContent>
       <CardFooter>
         <Button
@@ -112,3 +124,4 @@ export function LogIn() {
     </Card>
   );
 }
+
