@@ -1,12 +1,10 @@
 'use client'
 import { CardTitle, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { nunito } from "@/components/ui/fonts"
-import Image from "next/image"
 import React, { useState } from "react"
 import axios from "axios"
+import InputAdornments from "./ui/inputAdornments";
+import TextField from '@mui/material/TextField';
 
 export function SignUp() {
   const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -19,8 +17,6 @@ export function SignUp() {
   const [isMatch, setIsMatch] = useState<boolean>(true)
   const [errors, setErrors] = useState<{ msg: string }[]>([])
   const [successfulMessage, setSuccessfulMessage] = useState<string | null>(null);
-
-  const handleCheckBoxChange = () => setShowPassword(!showPassword)
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -49,131 +45,84 @@ export function SignUp() {
       setSuccessfulMessage('Usuario registrado exitosamente');
 
     } catch (error: any) {
-      console.error('Error registering user:', error.response?.data || error.message);
-      if (error.response && error.response.data && error.response.data.errors) {
-        setErrors(error.response.data.errors);
-      } else {
-        setErrors([{ msg: 'Hubo un error al registrar el usuario' }]);
-      }
-      setSuccessfulMessage(null);
+      console.error('Error registrando el usuario:', error);
+      setErrors([{ msg: error.response.data.message }]);
     }
   };
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="mt-8 w-[400px]">
-        <CardHeader className="flex flex-row justify-center">
-          <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
+      <Card className="max-w-md mx-auto mt-8">
+        <CardHeader>
+          <CardTitle className="text-center text-custom-blue mt-5">Registro</CardTitle>
         </CardHeader>
         <CardContent>
-          {errors.length > 0 && (
-            <section className="my-3">
-              {errors.map((error, index) => (
-                <p key={index} className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-3 my-2">{error.msg}</p>
-              ))}
-            </section>
-          )}
-          {successfulMessage && (
-            <section className="my-3">
-              <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-green-600 p-3 my-2">{successfulMessage}</p>
-            </section>
-          )}
-          <section className="my-3 -mt-5">
-            <section className="flex flex-row space-x-4">
-              <article className="my-2">
-                <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="nombre">Nombre</Label>
-                <Input
-                  className="border"
-                  id="nombre"
-                  name="nombre"
-                  placeholder="Ingrese su nombre"
-                  required
-                  type="text"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
-                />
-              </article>
-              <article className="my-2">
-                <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="apellido">Apellido</Label>
-                <Input
-                  className="border"
-                  id="apellido"
-                  name="apellido"
-                  placeholder="Ingrese su apellido"
-                  required
-                  type="text"
-                  value={apellido}
-                  onChange={(e) => setApellido(e.target.value)}
-                />
-              </article>
-            </section>
-
-            <article className="my-2">
-              <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="email">Nombre de Usuario</Label>
-              <Input
-                className="border"
+          <section className="space-y-3">
+            <article>
+              <TextField
                 id="username"
-                name="username"
-                placeholder="Ingrese su nombre de usuario"
-                required
-                type="username"
+                label="Username"
+                type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
+                fullWidth
+                variant="standard"
+                margin="normal"
+                InputLabelProps={{ required: false }}
               />
             </article>
-
-            <article className="my-2">
-              <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="email">Email</Label>
-              <Input
-                className="border"
+            <article >
+              <TextField className="-mt-1.5"
                 id="email"
-                name="email"
-                placeholder="Ingrese su correo electrónico"
-                required
+                label="Email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+                fullWidth
+                variant="standard"
+                margin="normal"
+                InputLabelProps={{ required: false }}
               />
             </article>
-            <article className="my-2">
-              <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="password">Contraseña</Label>
-              <article className="space-y-3">
-                <Input
-                  id="password"
-                  name="password"
-                  className="border"
-                  placeholder="Ingrese su contraseña"
-                  required
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                <Label className="block text-[14px] leading-6 text-custom-blue" htmlFor="password2">Confirmar Contraseña</Label>
-                <Input
-                  id="password2"
-                  className="border"
-                  placeholder="Repita la contraseña"
-                  required
-                  type={showPassword ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={handleConfirmPasswordChange}
-                />
-                <article>
-                  {!isMatch ? <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-2 my-2">Las contraseñas no coinciden</p>
-                    : <p></p>}
-                </article>
-              </article>
-              <article className="flex gap-x-2 items-center">
-                <Input
-                  type="checkbox"
-                  className="w-auto h-auto"
-                  onChange={handleCheckBoxChange}
-                  id="show"
-                />
-                <Label className="block text-[10px] leading-6 text-grey-900" htmlFor="show">Mostrar Contraseña</Label>
+            <article>
+              <TextField className="-mt-1.5"
+                id="nombre"
+                label="Nombre"
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                required
+                fullWidth
+                variant="standard"
+                margin="normal"
+                InputLabelProps={{ required: false }}
+              />
+            </article>
+            <article>
+              <TextField className="-mt-1.5"
+                id="apellido"
+                label="Apellido"
+                type="text"
+                value={apellido}
+                onChange={(e) => setApellido(e.target.value)}
+                required
+                fullWidth
+                variant="standard"
+                margin="normal"
+                InputLabelProps={{ required: false }}
+              />
+            </article>
+            
+            <InputAdornments />
+
+            <article>
+              <article>
+                {!isMatch && <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-2 my-2">Las contraseñas no coinciden</p>}
               </article>
             </article>
-            <article className="flex justify-center w-full mt-5">
+            <article className="flex justify-center w-full mt-5 ">
               <Button
                 variant={isMatch ? 'secondary' : 'ghost'}
                 disabled={!isMatch}
@@ -188,4 +137,3 @@ export function SignUp() {
     </form>
   );
 }
-
