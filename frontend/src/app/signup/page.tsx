@@ -4,7 +4,7 @@ export default function Page() {
     return (
         <main className="bg-custom-white h-full flex flex-col items-center">
             <section>
-                <SignUp />
+                <SignUp/>
             </section>
         </main>
     )

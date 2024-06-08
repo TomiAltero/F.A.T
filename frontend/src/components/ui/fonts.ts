@@ -1,4 +1,4 @@
-import { Lusitana, Nunito} from "next/font/google";
+import { Lusitana, Nunito, Open_Sans} from "next/font/google";
 
 export const lusitana = Lusitana({
     subsets: ['latin'],
@@ -8,4 +8,9 @@ export const lusitana = Lusitana({
 export const nunito = Nunito({
     subsets : ["latin"],
     weight : ["500", "700", "900"]
+})
+
+export const opensans = Open_Sans({
+    subsets : ["latin"],
+    weight : ["400", "700", "800", "300"]
 })

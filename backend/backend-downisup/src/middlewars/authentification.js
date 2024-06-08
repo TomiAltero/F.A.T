@@ -1,23 +1,30 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const jwt = require("jsonwebtoken");
 
-function authenticateToken(req, res, next) {
-  const token = req.header('Authorization')?.split(' ')[1];
-  console.log('Token:', token);
-  const TOKEN_SECRET = process.env.TOKEN_SECRET;
+function verificarToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+
+  if (!authHeader) {
+    console.log("No authorization header");
+    return res.status(403).json({ error: "No posee token de autenticacion" });
+  }
+
+  const token = authHeader.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ error: 'Acceso denegado. No se proporcionó token' });
+    console.log("No token found in authorization header");
+    return res.status(403).json({ error: "No posee token de autenticacion" });
   }
 
-  try {
-    const verified = jwt.verify(token, TOKEN_SECRET);
-    req.user = verified;
+  jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      console.log("Token verification error:", err);
+      return res
+        .status(401)
+        .json({ error: "Error en la autenticacion del token" });
+    }
+    req.userId = decoded.id;
     next();
-  } catch (error) {
-    res.status(401).json({ error: 'Token inválido' });
-  }
+  });
 }
 
-module.exports = authenticateToken;
-
+module.exports = verificarToken;
