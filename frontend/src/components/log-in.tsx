@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useState } from "react";
 import {
   CardTitle,
@@ -13,27 +14,26 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
 
 export function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleLogin = async (event: any) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
       const response = await axios.post(
-        "https://localhost:5000/api/usuarios/login",
-        { username, password },
+        "http://localhost:5000/api/usuarios/login",
+        {
+          username,
+          password,
+        },
       );
       const { token } = response.data;
 
-      // Guardar el token en el almacenamiento local o de sesión
       localStorage.setItem("token", token);
-
-      // Mostrar mensaje de éxito
       setMessage("Inicio de sesión exitoso");
     } catch (error) {
       console.error("Error en el login:", error);
@@ -41,36 +41,10 @@ export function LogIn() {
     }
   };
 
-  const checkAuthenticated = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (token) {
-        const response = await axios.get("/api/some-protected-route", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        // Manejar la respuesta de la ruta protegida
-      } else {
-        setMessage("No estás autenticado");
-      }
-    } catch (error) {
-      console.error("Error al verificar la autenticación:", error);
-      setMessage("Token inválido o expirado");
-    }
-  };
-
   return (
     <Card className="w-96 px-10 py-3">
       <CardHeader className="flex flex-row justify-between">
-        <Image
-          className="bg-custom-blue"
-          src="/logo-du.png"
-          width={72}
-          height={50}
-          alt="Logo DiU"
-        />
+        <Image src="/logo-du.png" width={72} height={50} alt="Logo DiU" />
         <CardTitle className="text-4xl text-center font-black">
           DOWN IS UP
         </CardTitle>
@@ -96,7 +70,6 @@ export function LogIn() {
             </Label>
             <Input
               id="password"
-              className=""
               placeholder="Ingrese su contraseña"
               required
               type="password"
