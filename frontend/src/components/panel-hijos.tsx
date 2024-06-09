@@ -13,6 +13,13 @@ export function PanelHijo({
   fechaNacimiento,
   obraSocial,
   imagen,
+}: {
+  nombre: string;
+  edad: number;
+  dni: string;
+  fechaNacimiento: string;
+  obraSocial: string;
+  imagen: string;
 }) {
   return (
     <Card sx={{ width: 350, borderRadius: 4 }}>
