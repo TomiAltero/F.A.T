@@ -14,6 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export function LogIn() {
   const [username, setUsername] = useState("");
@@ -35,6 +38,21 @@ export function LogIn() {
 
       localStorage.setItem("token", token);
       setMessage("Inicio de sesión exitoso");
+
+      Toastify({
+        text: "Haz iniciado sesión exitosamente",
+        duration: 6000,
+        position: "right",
+        style: {
+          background: "#009933",
+          color: "#FFFFFF",
+          fontSize: "14px",
+          padding: "10px",
+          borderRadius: "4px",
+          fontWeight: "bold",
+          marginTop: "70px",
+        },
+      }).showToast();
     } catch (error) {
       console.error("Error en el login:", error);
       setMessage("Credenciales inválidas");
@@ -77,7 +95,6 @@ export function LogIn() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {message && <p className="text-center text-red-500">{message}</p>}
         </CardContent>
         <CardFooter>
           <Button
