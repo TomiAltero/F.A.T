@@ -8,7 +8,7 @@ function verificarToken(req, res, next) {
     return res.status(403).json({ error: "No posee token de autenticacion" });
   }
 
-  const token = authHeader.split(" ")[1];
+  const [, token] = authHeader.split(" ");
 
   if (!token) {
     console.log("No token found in authorization header");
