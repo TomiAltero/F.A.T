@@ -62,9 +62,9 @@ export function PanelPadre() {
       <div style={{ marginLeft: "60px" }}>
         <PanelHijo
           nombre="María López"
-          edad={35}
-          dni="12345678"
-          fechaNacimiento="25/10/1989"
+          edad={8}
+          dni="55671234"
+          fechaNacimiento="25/10/2013"
           obraSocial="Swiss Medical"
           imagen="/persona2.webp"
         />
