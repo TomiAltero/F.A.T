@@ -98,7 +98,6 @@ class UsuarioController {
 
     try {
       const usuario = await Usuario.findOne({ where: { username } });
-      console.log(usuario);
 
       if (!usuario) {
         return res.status(404).json({ error: "Usuario no encontrado" });
@@ -128,6 +127,8 @@ class UsuarioController {
   async obtenerPerfilUsuario(req, res) {
     try {
       const usuario = await Usuario.findByPk(req.userId);
+
+      console.log(usuario.toJSON());
       if (!usuario) {
         return res.status(404).json({ error: "Usuario no encontrado" });
       }

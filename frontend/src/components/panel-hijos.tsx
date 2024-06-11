@@ -23,7 +23,7 @@ export function PanelHijo({
 }) {
   return (
     <Card sx={{ width: 350, borderRadius: 4 }}>
-      <CardMedia sx={{ height: 450 }} image={imagen} title="Foto de perfil" />
+      <CardMedia sx={{ height: 500 }} image={imagen} title="Foto de perfil" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {nombre}

@@ -1,13 +1,13 @@
 "use client";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import "toastify-js/src/toastify.css";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React, { useState } from "react";
 import axios from "axios";
 import Toastify from "toastify-js";
-import "toastify-js/src/toastify.css";
 import "react-toastify/dist/ReactToastify.css";
 
 export function SignUp() {
@@ -87,7 +87,7 @@ export function SignUp() {
         validationErrors.forEach((errorText: string) => {
           Toastify({
             text: errorText,
-            duration: 20000,
+            duration: 5000,
             position: "right",
             style: {
               background: "#FF0000",
