@@ -89,6 +89,11 @@ export function FormSignUp() {
       toast.error("Error registrando el usuario");
     }
   };
+
+  const handleGoogleSignIn = () => {
+    window.location.href = "https://accounts.google.com/signin";
+  };
+
   return (
     <form onSubmit={handleFormSubmit}>
       <Card className="max-w-md mx-auto mt-8">
@@ -179,6 +184,16 @@ export function FormSignUp() {
               >
                 Continuar
               </Button>
+            </article>
+            <article className="flex justify-center w-full mt-3">
+            <Button
+                className="w-full rounded-2xl px-3 py-2 text-sm font-semi bold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 flex items-center justify-center border-2 "
+>
+                Continuar con Google
+
+                <img src="/google-logo.png" width={16} alt="Google Icon" className="mr-2 ml-3" />
+
+            </Button>
             </article>
           </section>
         </CardContent>
