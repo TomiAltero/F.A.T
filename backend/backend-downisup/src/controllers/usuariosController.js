@@ -91,6 +91,10 @@ class UsuarioController {
       res.status(500).json({ error: 'Hubo un error al eliminar usuario' });
     }
   }
+
+  async validarusuario(req, res) {
+    
+  }
 }
 
 module.exports = new UsuarioController();
