@@ -43,6 +43,16 @@ export function Perfil() {
       <p style={{ color: "black" }}>Email: {usuario.email}</p>
       <p style={{ color: "black" }}>Nombre: {usuario.nombre}</p>
       <p style={{ color: "black" }}>Apellido: {usuario.apellido}</p>
+      <h2 style={{ color: "black" }}>Hijos</h2>
+      {usuario.Hijos &&
+        usuario.Hijos.map((hijo) => (
+          <div key={hijo.id}>
+            <p style={{ color: "black" }}>Nombre: {hijo.firstName}</p>
+            <p style={{ color: "black" }}>Apellido: {hijo.lastName}</p>
+            <p style={{ color: "black" }}>DNI: {hijo.dni}</p>
+            <p style={{ color: "black" }}>Edad: {hijo.age}</p>
+          </div>
+        ))}
     </div>
   );
 }

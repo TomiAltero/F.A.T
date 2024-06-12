@@ -1,4 +1,3 @@
-"use strict";
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
@@ -31,13 +30,5 @@ const Usuario = sequelize.define(
     timestamps: true,
   },
 );
-
-Usuario.associate = function (models) {
-  Usuario.belongsToMany(models.Hijo, {
-    through: "UsuarioXHijo",
-    foreignKey: "usuarioId",
-    otherKey: "hijoId",
-  });
-};
 
 module.exports = Usuario;
