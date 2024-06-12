@@ -56,6 +56,21 @@ export function LogIn() {
     } catch (error) {
       console.error("Error en el login:", error);
       setMessage("Credenciales inválidas");
+
+      Toastify({
+        text: "Credenciales inválidas",
+        duration: 6000,
+        position: "right",
+        style: {
+          background: "#FF0000",
+          color: "#FFFFFF",
+          fontSize: "14px",
+          padding: "10px",
+          borderRadius: "4px",
+          fontWeight: "bold",
+          marginTop: "70px",
+        },
+      }).showToast();
     }
   };
 
