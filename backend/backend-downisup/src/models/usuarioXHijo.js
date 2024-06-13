@@ -1,28 +1,17 @@
-"use strict";
-const { Model, DataTypes } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
 
-class UsuarioXHijo extends Model {
-  static associate(models) {}
-}
+class UsuarioXHijo extends Model {}
 
 UsuarioXHijo.init(
   {
     usuarioId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "Usuario",
-        key: "id",
-      },
     },
     hijoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "Hijo",
-        key: "id",
-      },
     },
   },
   {

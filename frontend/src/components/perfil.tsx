@@ -1,10 +1,10 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export function Perfil() {
   const [usuario, setUsuario] = useState(null);
+  const [hijos, setHijos] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -19,7 +19,8 @@ export function Perfil() {
             },
           },
         );
-        setUsuario(response.data);
+        setUsuario(response.data.usuario);
+        setHijos(response.data.hijos);
       } catch (error) {
         setError("Error al obtener el perfil del usuario");
       }
@@ -44,15 +45,14 @@ export function Perfil() {
       <p style={{ color: "black" }}>Nombre: {usuario.nombre}</p>
       <p style={{ color: "black" }}>Apellido: {usuario.apellido}</p>
       <h2 style={{ color: "black" }}>Hijos</h2>
-      {usuario.Hijos &&
-        usuario.Hijos.map((hijo) => (
-          <div key={hijo.id}>
-            <p style={{ color: "black" }}>Nombre: {hijo.firstName}</p>
-            <p style={{ color: "black" }}>Apellido: {hijo.lastName}</p>
-            <p style={{ color: "black" }}>DNI: {hijo.dni}</p>
-            <p style={{ color: "black" }}>Edad: {hijo.age}</p>
-          </div>
-        ))}
+      {hijos.map((hijo, index) => (
+        <div key={index}>
+          <p style={{ color: "black" }}>Nombre: {hijo.nombre}</p>
+          <p style={{ color: "black" }}>Apellido: {hijo.apellido}</p>
+          <p style={{ color: "black" }}>DNI: {hijo.dni}</p>
+          <p style={{ color: "black" }}>Edad: {hijo.edad}</p>
+        </div>
+      ))}
     </div>
   );
 }

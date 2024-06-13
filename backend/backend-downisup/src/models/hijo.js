@@ -1,24 +1,15 @@
-"use strict";
-const { Model, DataTypes } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
 
-class Hijo extends Model {
-  static associate(models) {
-    Hijo.belongsToMany(models.Usuario, {
-      through: "UsuarioXHijo",
-      foreignKey: "hijoId",
-      otherKey: "usuarioId",
-    });
-  }
-}
+class Hijo extends Model {}
 
 Hijo.init(
   {
-    firstName: {
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastName: {
+    apellido: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,14 +18,26 @@ Hijo.init(
       allowNull: false,
       unique: true,
     },
-    age: {
+    edad: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
     sequelize,
     modelName: "Hijo",
+    tableName: "hijo",
+    timestamps: true,
   },
 );
 

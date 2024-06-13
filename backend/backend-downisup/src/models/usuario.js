@@ -1,9 +1,11 @@
-"use strict";
-const { DataTypes } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
+const Hijo = require("./hijo");
+const UsuarioXHijo = require("./usuarioXHijo");
 
-const Usuario = sequelize.define(
-  "Usuario",
+class Usuario extends Model {}
+
+Usuario.init(
   {
     username: {
       type: DataTypes.STRING,
@@ -12,7 +14,6 @@ const Usuario = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -26,18 +27,29 @@ const Usuario = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
+    sequelize,
+    modelName: "Usuario",
+    tableName: "Usuarios",
     timestamps: true,
   },
 );
 
-Usuario.associate = function (models) {
-  Usuario.belongsToMany(models.Hijo, {
-    through: "UsuarioXHijo",
-    foreignKey: "usuarioId",
-    otherKey: "hijoId",
-  });
-};
+Usuario.belongsToMany(Hijo, {
+  through: UsuarioXHijo,
+  as: "Hijos",
+  foreignKey: "usuarioId",
+});
 
 module.exports = Usuario;
