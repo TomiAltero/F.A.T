@@ -15,6 +15,20 @@ class UsuarioController {
     }
   }
 
+  async obtenerUsuarioPorId(req, res) {
+    try {
+      const { id } = req.params;
+      const usuario = await Usuario.findByPk(id);
+      if (!usuario) {
+        return res.status(404).json({ error: "Usuario no encontrado" });
+      }
+      res.json(usuario);
+    } catch (error) {
+      console.error("Error al obtener el usuario:", error);
+      res.status(500).json({ error: "Hubo un error al obtener el usuario" });
+    }
+  }
+
   async agregarUsuario(req, res) {
     try {
       const { username, email, password, nombre, apellido } = req.body;
@@ -136,6 +150,30 @@ class UsuarioController {
       res
         .status(500)
         .json({ error: "Hubo un error al obtener el perfil del usuario" });
+    }
+  }
+  async obtenerHijos(req, res) {
+    try {
+      const usuario = await Usuario.findByPk(req.userId, {
+        include: {
+          model: Hijo,
+          through: UsuarioXHijo,
+          as: "Hijos",
+        },
+      });
+
+      if (!usuario) {
+        return res.status(404).json({ error: "Usuario no encontrado" });
+      }
+
+      const hijos = usuario.Hijos.map((hijo) => hijo.toJSON());
+
+      res.json(hijos);
+    } catch (error) {
+      console.error("Error al obtener los hijos del usuario:", error);
+      res
+        .status(500)
+        .json({ error: "Hubo un error al obtener los hijos del usuario" });
     }
   }
 }
