@@ -1,10 +1,15 @@
-import { LogIn } from "@/components/log-in"
+import { LogIn } from "@/components/log-in";
+import LandingLayout from "@/app/landinglyout";
+
 export default function Page() {
-    return (
-        <main className="flex flex-col justify-center items-center h-full">
-            <section>
-                <LogIn />
-            </section>
-        </main>
-    )
+  return (
+    <LandingLayout>
+      <main className="flex flex-col justify-center items-center h-full">
+        <section>
+          <LogIn />
+        </section>
+      </main>
+    </LandingLayout>
+  );
 }
+
