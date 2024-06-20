@@ -17,6 +17,7 @@ import Image from "next/image";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import "react-toastify/dist/ReactToastify.css";
+import router from "next/router";
 
 export function LogIn() {
   const [username, setUsername] = useState("");
@@ -38,6 +39,8 @@ export function LogIn() {
 
       localStorage.setItem("token", token);
       setMessage("Inicio de sesión exitoso");
+
+      window.location.href = "/inicio";
 
       Toastify({
         text: "Haz iniciado sesión exitosamente",
