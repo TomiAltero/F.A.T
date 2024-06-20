@@ -14,16 +14,20 @@ import React, { useState } from "react";
 function Sidebar() {
   const pathname = usePathname();
   const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false); // Añadí el tipo boolean
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   return (
     <div className="w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden">
       <div className="w-full h-full bg-white border-r">
-        <div className="p-3 md:p-6 flex cursor-pointer group items-center gap-2 h-1/8">
-          <div>
-            <h1 className="text-xl font-bold text-blue-800">DownIsUpApp</h1>
+        <Link href="/inicio">
+          <div className="p-3 md:p-6 flex cursor-pointer group items-center gap-2 h-1/8">
+            <div>
+              <h1 className="text-xl font-bold text-blue-800 text-center mx-5">
+                DownIsUpApp
+              </h1>
+            </div>
           </div>
-        </div>
+        </Link>
 
         <hr className="bg-gray-400 mx-4" />
 

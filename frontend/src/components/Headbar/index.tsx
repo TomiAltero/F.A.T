@@ -77,7 +77,7 @@ function HeadBar() {
     {
       icon: <Logout size={20} className="text-gray-600" />,
       text: "Cerrar sesión",
-      onClick: handleLogout, // Agregamos la función handleLogout
+      onClick: handleLogout,
     },
   ];
   if (error) {
@@ -134,7 +134,7 @@ function HeadBar() {
                       key={index}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer"
                       onClick={() => {
-                        if (item.onClick) item.onClick(); // Llamar a la función onClick si está definida
+                        if (item.onClick) item.onClick();
                       }}
                     >
                       <div className="flex items-center">

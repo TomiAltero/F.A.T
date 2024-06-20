@@ -1,4 +1,4 @@
-import { Perfil } from "@/components/perfil"
+import Perfil from "@/components/perfil";
 
 export default function Page() {
   return (
@@ -7,5 +7,5 @@ export default function Page() {
         <Perfil />
       </section>
     </main>
-  )
+  );
 }
