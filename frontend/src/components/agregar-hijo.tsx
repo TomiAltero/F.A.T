@@ -11,44 +11,29 @@ import Toastify from "toastify-js";
 import "react-toastify/dist/ReactToastify.css";
 
 export function FormHijo() {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [nombre, setNombre] = useState<string>("");
   const [apellido, setApellido] = useState<string>("");
-  const [isMatch, setIsMatch] = useState<boolean>(true);
+  const [edad, setEdad] = useState<string>("");
+  const [dni, setDni] = useState<string>("");
+  const [nacimiento, setNacimiento] = useState<string>("");
   const [errors, setErrors] = useState<{ msg: string }[]>([]);
   const [successfulMessage, setSuccessfulMessage] = useState<string | null>(
     null,
   );
 
-  const handleCheckBoxChange = () => setShowPassword(!showPassword);
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setIsMatch(event.target.value === confirmPassword);
-  };
-
-  const handleConfirmPasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setConfirmPassword(event.target.value);
-    setIsMatch(event.target.value === password);
-  };
-
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/usuarios", {
-        username,
-        email,
-        password,
-        nombre,
-        apellido,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/usuarios/hijo",
+        {
+          nombre,
+          apellido,
+          edad,
+          dni,
+        },
+      );
 
       Toastify({
         text: "Usuario registrado exitosamente",
@@ -71,10 +56,9 @@ export function FormHijo() {
 
       setNombre("");
       setApellido("");
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      setEdad("");
+      setDni("");
+      setNacimiento("");
     } catch (error: any) {
       console.error(
         "Error registrando el usuario:",
@@ -109,7 +93,7 @@ export function FormHijo() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="mt-8 w-[400px]">
+      <Card className="w-[400px]">
         <CardHeader className="flex flex-row justify-center">
           <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
         </CardHeader>
@@ -171,97 +155,57 @@ export function FormHijo() {
                 className="block text-xs font-bold leading-6 text-blue-900"
                 htmlFor="username"
               >
-                Nombre de Usuario
+                Edad
               </Label>
               <Input
                 className="rounded-xl border"
-                id="username"
-                name="username"
-                placeholder="Ingrese su nombre de usuario"
+                id="edad"
+                name="edad"
+                placeholder="Ingrese su edad"
                 required
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={edad}
+                onChange={(e) => setEdad(e.target.value)}
               />
             </article>
 
             <article className="space-y-2 my-2">
               <Label
                 className="block text-xs font-bold leading-6 text-blue-900"
-                htmlFor="email"
+                htmlFor="username"
               >
-                Email
+                DNI
               </Label>
               <Input
                 className="rounded-xl border"
-                id="email"
-                name="email"
-                placeholder="Ingrese su correo electrónico"
+                id="edad"
+                name="edad"
+                placeholder="Ingrese su dni"
                 required
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={dni}
+                onChange={(e) => setDni(e.target.value)}
               />
             </article>
-            <article className="space-y-2 my-2">
-              <Label
-                className="block text-xs font-bold leading-6 text-blue-900"
-                htmlFor="password"
-              >
-                Contraseña
-              </Label>
-              <article className="space-y-3">
-                <Input
-                  id="password"
-                  name="password"
-                  className="rounded-xl border"
-                  placeholder="Ingrese su contraseña"
-                  required
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                <Label
-                  className="block text-xs font-bold leading-6 text-blue-900"
-                  htmlFor="password2"
-                >
-                  Confirmar Contraseña
-                </Label>
-                <Input
-                  id="password2"
-                  className="rounded-xl border"
-                  placeholder="Repita la contraseña"
-                  required
-                  type={showPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  onChange={handleConfirmPasswordChange}
-                />
-                <article>
-                  {!isMatch && (
-                    <p className="transition-all rounded-2xl border ease-in-out delay-200 text-sm text-center font-bold bg-red-600 p-2 my-2">
-                      Las contraseñas no coinciden
-                    </p>
-                  )}
-                </article>
-              </article>
-              <article className="flex gap-x-2 items-center">
-                <Input
-                  type="checkbox"
-                  className="w-auto h-auto"
-                  onChange={handleCheckBoxChange}
-                  id="show"
-                />
-                <Label
-                  className="block text-xs font-medium leading-6 text-gray-900"
-                  htmlFor="show"
-                >
-                  Mostrar contraseña
-                </Label>
-              </article>
-            </article>
+            <Label
+              className="block text-xs font-bold leading-6 text-blue-900"
+              htmlFor="username"
+            >
+              DNI
+            </Label>
+            <Input
+              className="rounded-xl border"
+              id="nacimiento"
+              name="nacimiento"
+              required
+              type="date"
+              value={nacimiento}
+              onChange={(e) => setNacimiento(e.target.value)}
+            />
+
+            <article></article>
             <article className="flex justify-center w-full mt-5">
               <Button
-                disabled={!isMatch}
                 variant={"ghost"}
                 className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
                 type="submit"

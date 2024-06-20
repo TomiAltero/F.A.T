@@ -14,11 +14,6 @@ const config: Config = {
     },
 
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       colors: {
         "custom-blue": "#303487",
         "custom-white": "#FDFDFD",
@@ -39,19 +34,6 @@ const config: Config = {
         strokedark: "#2E3A47",
         "form-strokedark": "#3d4d60",
         "form-input": "#1d2a39",
-        "meta-1": "#DC3545",
-        "meta-2": "#EFF2F7",
-        "meta-3": "#10B981",
-        "meta-4": "#313D4A",
-        "meta-5": "#259AE6",
-        "meta-6": "#FFBA00",
-        "meta-7": "#FF6766",
-        "meta-8": "#F0950C",
-        "meta-9": "#E5E7EB",
-        "meta-10": "#0FADCF",
-        success: "#219653",
-        danger: "#D34053",
-        warning: "#FFA70B",
       },
 
       fontSize: {
@@ -192,28 +174,6 @@ const config: Config = {
         270: "67.5rem",
         280: "70rem",
         292.5: "73.125rem",
-      },
-      maxHeight: {
-        35: "8.75rem",
-        70: "17.5rem",
-        90: "22.5rem",
-        550: "34.375rem",
-        300: "18.75rem",
-      },
-      minWidth: {
-        22.5: "5.625rem",
-        42.5: "10.625rem",
-        47.5: "11.875rem",
-        75: "18.75rem",
-      },
-      zIndex: {
-        999999: "999999",
-        99999: "99999",
-        9999: "9999",
-        999: "999",
-        99: "99",
-        9: "9",
-        1: "1",
       },
     },
     plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],

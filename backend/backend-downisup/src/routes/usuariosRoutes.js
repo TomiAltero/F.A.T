@@ -27,6 +27,6 @@ router.post("/", validationDataUser, async (req, res, next) => {
 router.put("/:id", verificarToken, usuarioController.actualizarUsuario);
 router.delete("/:id", verificarToken, usuarioController.eliminarUsuario);
 
-router.get("/hijos", verificarToken, usuarioController.obtenerHijos);
+router.get("/hijo", verificarToken, usuarioController.obtenerHijos);
 
 module.exports = router;
