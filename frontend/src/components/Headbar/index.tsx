@@ -71,6 +71,10 @@ function HeadBar() {
     {
       icon: <Profile size={20} className="text-gray-600" />,
       text: "Mi perfil",
+      onClick: () => {
+        setIsDropdownOpen(false);
+        window.location.href = "/perfil";
+      },
     },
     { icon: <Setting2 size={20} className="text-gray-600" />, text: "Ajustes" },
     { divider: true },
