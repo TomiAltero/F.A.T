@@ -191,7 +191,7 @@ export function FormHijo() {
               className="block text-xs font-bold leading-6 text-blue-900"
               htmlFor="username"
             >
-              DNI
+              Nacimiento
             </Label>
             <Input
               className="rounded-xl border"
