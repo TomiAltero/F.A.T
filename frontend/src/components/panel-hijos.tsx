@@ -70,7 +70,9 @@ export function PanelHijo() {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Ver más</Button>
+              <Button size="small" href="/inicio">
+                Ver más
+              </Button>
             </CardActions>
           </Card>
         ))

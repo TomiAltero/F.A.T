@@ -16,7 +16,7 @@ const MedicalHistoryCard: React.FC<MedicalHistoryCardProps> = ({
   worsened,
 }) => {
   return (
-    <div className="rounded-sm border border-gray-200 bg-white px-7.5 py-6 shadow-default dark:border-gray-800 dark:bg-gray-900">
+    <div className="rounded-sm border border-gray-200 bg-white px-7.5 py-6 shadow-default dark:border-gray-800 dark:bg-gray-900 shadow-md">
       <div className="flex flex-col h-full justify-between">
         <div className="text-center mb-4">
           <h4 className="text-lg font-bold text-black dark:text-white">
