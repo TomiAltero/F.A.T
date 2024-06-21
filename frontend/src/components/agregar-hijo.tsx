@@ -93,9 +93,12 @@ export function FormHijo() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="w-[400px]">
-        <CardHeader className="flex flex-row justify-center">
+      <Card className="w-[400px] border-b-4 border-blue-800">
+        <CardHeader className="flex flex-col items-center ">
           <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
+          <CardTitle className="text-2xl font-bold text-blue-900 p-3">
+            Agregar hijo
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {errors.length > 0 && (
@@ -120,7 +123,7 @@ export function FormHijo() {
                   Nombre
                 </Label>
                 <Input
-                  className="rounded-xl border"
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6" // Borde solo inferior
                   id="nombre"
                   name="nombre"
                   placeholder="Ingrese su nombre"
@@ -138,7 +141,7 @@ export function FormHijo() {
                   Apellido
                 </Label>
                 <Input
-                  className="rounded-xl border"
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6" // Borde solo inferior
                   id="apellido"
                   name="apellido"
                   placeholder="Ingrese su apellido"
@@ -158,7 +161,7 @@ export function FormHijo() {
                 Edad
               </Label>
               <Input
-                className="rounded-xl border"
+                className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6" // Borde solo inferior
                 id="edad"
                 name="edad"
                 placeholder="Ingrese su edad"
@@ -177,7 +180,7 @@ export function FormHijo() {
                 DNI
               </Label>
               <Input
-                className="rounded-xl border"
+                className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6" // Borde solo inferior
                 id="edad"
                 name="edad"
                 placeholder="Ingrese su dni"
@@ -194,7 +197,7 @@ export function FormHijo() {
               Nacimiento
             </Label>
             <Input
-              className="rounded-xl border"
+              className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6" // Borde solo inferior
               id="nacimiento"
               name="nacimiento"
               required
@@ -202,7 +205,6 @@ export function FormHijo() {
               value={nacimiento}
               onChange={(e) => setNacimiento(e.target.value)}
             />
-
             <article></article>
             <article className="flex justify-center w-full mt-5">
               <Button

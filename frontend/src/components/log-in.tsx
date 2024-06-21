@@ -95,7 +95,7 @@ export function LogIn() {
               </Label>
               <div className="relative">
                 <Input
-                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6" // Borde solo inferior
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6"
                   id="username"
                   name="username"
                   placeholder="Ingrese su nombre de usuario"
