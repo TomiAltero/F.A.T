@@ -1,70 +1,57 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-interface CardDataStatsProps {
-  title: string;
-  total: string;
-  rate: string;
-  levelUp?: boolean;
-  levelDown?: boolean;
-  children: ReactNode;
+interface MedicalHistoryCardProps {
+  category: string;
+  value: string;
+  description: string;
+  improved?: boolean;
+  worsened?: boolean;
 }
 
-const CardDataStats: React.FC<CardDataStatsProps> = ({
-  title,
-  total,
-  rate,
-  levelUp,
-  levelDown,
-  children,
+const MedicalHistoryCard: React.FC<MedicalHistoryCardProps> = ({
+  category,
+  value,
+  description,
+  improved,
+  worsened,
 }) => {
   return (
-    <div className="rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
-        {children}
-      </div>
-
-      <div className="mt-4 flex items-end justify-between">
-        <div>
-          <h4 className="text-title-md font-bold text-black dark:text-white">
-            {total}
+    <div className="rounded-sm border border-gray-200 bg-white px-7.5 py-6 shadow-default dark:border-gray-800 dark:bg-gray-900">
+      <div className="flex flex-col h-full justify-between">
+        <div className="text-center mb-4">
+          <h4 className="text-lg font-bold text-black dark:text-white">
+            {value}
           </h4>
-          <span className="text-sm font-medium">{title}</span>
+          <span className="text-sm font-medium">{category}</span>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            {description}
+          </p>
         </div>
 
-        <span
-          className={`flex items-center gap-1 text-sm font-medium ${
-            levelUp && "text-meta-3"
-          } ${levelDown && "text-meta-5"} `}
-        >
-          {rate}
-
-          {levelUp && (
+        <span className="flex items-center justify-center gap-1 text-sm font-medium">
+          {improved && (
             <svg
-              className="fill-meta-3"
-              width="10"
-              height="11"
-              viewBox="0 0 10 11"
-              fill="none"
+              className="w-4 h-4 fill-current text-green-600"
+              viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                fill=""
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M18.7071 3.29289C19.0976 3.68342 19.0976 4.31658 18.7071 4.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L7 11.5858L17.2929 1.29289C17.6834 0.902369 18.3166 0.902369 18.7071 1.29289Z"
               />
             </svg>
           )}
-          {levelDown && (
+          {worsened && (
             <svg
-              className="fill-meta-5"
-              width="10"
-              height="11"
-              viewBox="0 0 10 11"
-              fill="none"
+              className="w-4 h-4 fill-current text-red-600"
+              viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M5.64284 7.69237L9.09102 4.33987L10 5.22362L5 10.0849L-8.98488e-07 5.22362L0.908973 4.33987L4.35716 7.69237L4.35716 0.0848701L5.64284 0.0848704L5.64284 7.69237Z"
-                fill=""
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M19 1.41L17.59 0 10 7.59 2.41 0 1 1.41 8.59 9 1 16.59 2.41 18 10 10.41 17.59 18 19 16.59 11.41 9 19 1.41Z"
               />
             </svg>
           )}
@@ -74,4 +61,4 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   );
 };
 
-export default CardDataStats;
+export default MedicalHistoryCard;
