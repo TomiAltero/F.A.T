@@ -109,10 +109,14 @@ export function SignUp() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="mt-8 w-[400px]">
-        <CardHeader className="flex flex-row justify-center">
+      <Card className="mt-8 w-[400px] border-b-4 border-blue-800">
+        <CardHeader className="flex flex-col items-center">
           <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
+          <CardTitle className="mt-4 text-xl font-bold text-blue-900">
+            Registrate
+          </CardTitle>
         </CardHeader>
+
         <CardContent>
           {errors.length > 0 && (
             <section className="my-3">
@@ -136,7 +140,7 @@ export function SignUp() {
                   Nombre
                 </Label>
                 <Input
-                  className="rounded-xl border"
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
                   id="nombre"
                   name="nombre"
                   placeholder="Ingrese su nombre"
@@ -154,7 +158,7 @@ export function SignUp() {
                   Apellido
                 </Label>
                 <Input
-                  className="rounded-xl border"
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
                   id="apellido"
                   name="apellido"
                   placeholder="Ingrese su apellido"
@@ -174,7 +178,7 @@ export function SignUp() {
                 Nombre de Usuario
               </Label>
               <Input
-                className="rounded-xl border"
+                className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
                 id="username"
                 name="username"
                 placeholder="Ingrese su nombre de usuario"
@@ -193,7 +197,7 @@ export function SignUp() {
                 Email
               </Label>
               <Input
-                className="rounded-xl border"
+                className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
                 id="email"
                 name="email"
                 placeholder="Ingrese su correo electrónico"
@@ -214,7 +218,7 @@ export function SignUp() {
                 <Input
                   id="password"
                   name="password"
-                  className="rounded-xl border"
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
                   placeholder="Ingrese su contraseña"
                   required
                   type={showPassword ? "text" : "password"}
@@ -229,7 +233,7 @@ export function SignUp() {
                 </Label>
                 <Input
                   id="password2"
-                  className="rounded-xl border"
+                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
                   placeholder="Repita la contraseña"
                   required
                   type={showPassword ? "text" : "password"}
@@ -262,8 +266,8 @@ export function SignUp() {
             <article className="flex justify-center w-full mt-5">
               <Button
                 disabled={!isMatch}
-                variant={"ghost"}
-                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+                variant={"primary"}
+                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
                 type="submit"
               >
                 Continuar

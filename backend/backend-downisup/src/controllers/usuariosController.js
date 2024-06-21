@@ -85,8 +85,8 @@ class UsuarioController {
       const usuario = await Usuario.findByPk(id);
       if (!usuario) {
         return res.status(404).json({ error: "Usuario no encontrado" });
+        await usuario.destroy();
       }
-      await usuario.destroy();
       console.log("Usuario eliminado:", usuario.toJSON());
       res.json({ message: "Usuario eliminado correctamente" });
     } catch (error) {
