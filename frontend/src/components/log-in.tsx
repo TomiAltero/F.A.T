@@ -139,7 +139,7 @@ export function LogIn() {
               <p className="text-sm text-blue-900">
                 ¿No tienes cuenta?{" "}
                 <Link
-                  href="/register"
+                  href="/signup"
                   className="text-blue-700 font-bold hover:underline"
                 >
                   Regístrate
