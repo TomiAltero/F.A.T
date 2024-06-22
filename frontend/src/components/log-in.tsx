@@ -77,78 +77,80 @@ export function LogIn() {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <Card className="mt-8 w-[400px] h-[520px] border-b-4 border-blue-800">
-        <CardHeader className="flex flex-col items-center">
-          <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
-          <CardTitle className="mt-4 text-xl font-bold text-blue-900">
-            Inicio de Sesión
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <section className="my-5">
-            <article className="space-y-4 my-4">
-              <Label
-                className="block text-xs font-bold leading-6 text-blue-900"
-                htmlFor="username"
-              >
-                Nombre de Usuario
-              </Label>
-              <div className="relative">
-                <Input
-                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6"
-                  id="username"
-                  name="username"
-                  placeholder="Ingrese su nombre de usuario"
-                  required
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-            </article>
-            <article className="space-y-4 my-4">
-              <Label
-                className="block text-xs font-bold leading-6 text-blue-900 mt-4"
-                htmlFor="password"
-              >
-                Contraseña
-              </Label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  name="password"
-                  className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
-                  placeholder="Ingrese su contraseña"
-                  required
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </article>
-            <article className="flex justify-center w-full mt-8">
-              <Button
-                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-950 focus:outline-none"
-                type="submit"
-              >
-                Continuar
-              </Button>
-            </article>
-            <article className="flex justify-center w-full mt-7">
-              <p className="text-sm text-blue-900">
-                ¿No tienes cuenta?{" "}
-                <Link
-                  href="/signup"
-                  className="text-blue-700 font-bold hover:underline"
+    <div className="flex items-center justify-center min-h-screen">
+      <form onSubmit={handleLogin}>
+        <Card className="mt-8 w-[400px] h-[520px] border-b-4 border-blue-800">
+          <CardHeader className="flex flex-col items-center">
+            <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
+            <CardTitle className="mt-4 text-xl font-bold text-blue-900">
+              Inicio de Sesión
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <section className="my-5">
+              <article className="space-y-4 my-4">
+                <Label
+                  className="block text-xs font-bold leading-6 text-blue-900"
+                  htmlFor="username"
                 >
-                  Regístrate
-                </Link>
-              </p>
-            </article>
-          </section>
-        </CardContent>
-      </Card>
-    </form>
+                  Nombre de Usuario
+                </Label>
+                <div className="relative">
+                  <Input
+                    className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700 mb-6"
+                    id="username"
+                    name="username"
+                    placeholder="Ingrese su nombre de usuario"
+                    required
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+              </article>
+              <article className="space-y-4 my-4">
+                <Label
+                  className="block text-xs font-bold leading-6 text-blue-900 mt-4"
+                  htmlFor="password"
+                >
+                  Contraseña
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    name="password"
+                    className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
+                    placeholder="Ingrese su contraseña"
+                    required
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </article>
+              <article className="flex justify-center w-full mt-8">
+                <Button
+                  className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-950 focus:outline-none"
+                  type="submit"
+                >
+                  Continuar
+                </Button>
+              </article>
+              <article className="flex justify-center w-full mt-7">
+                <p className="text-sm text-blue-900">
+                  ¿No tienes cuenta?{" "}
+                  <Link
+                    href="/signup"
+                    className="text-blue-700 font-bold hover:underline"
+                  >
+                    Regístrate
+                  </Link>
+                </p>
+              </article>
+            </section>
+          </CardContent>
+        </Card>
+      </form>
+    </div>
   );
 }
