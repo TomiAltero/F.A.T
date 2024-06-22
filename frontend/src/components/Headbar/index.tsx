@@ -109,7 +109,7 @@ function HeadBar() {
               <p className="text-sm font-semibold text-gray-800">
                 {usuario
                   ? `${usuario.nombre} ${usuario.apellido}`
-                  : "No tiene cuenta"}
+                  : "Cargando..."}
               </p>
               <p className="text-xs font-medium text-gray-500">
                 {usuario ? usuario.username : ""}

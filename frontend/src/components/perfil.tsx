@@ -46,9 +46,9 @@ const Perfil = () => {
   const nombreCompleto = `${usuario.nombre} ${usuario.apellido}`;
 
   return (
-    <div className="mx-auto max-w-3xl mt-10 ">
+    <div className="mx-auto max-w-2xl mt-10">
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className="relative z-20 h-35 md:h-65">
+        <div className="relative z-10 h-35 md:h-65">
           <Image
             src={PortadaImage}
             alt="profile cover"
@@ -63,7 +63,7 @@ const Perfil = () => {
           <div className="absolute bottom-1 right-1 z-10 xsm:bottom-4 xsm:right-4"></div>
         </div>
         <div className="px-4 pb-6 text-center lg:pb-8 xl:pb-11.5">
-          <div className="relative z-30 mx-auto -mt-22 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-44 sm:p-3">
+          <div className="relative z-30 mx-auto -mt-36 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-44 sm:p-3">
             <div className="relative drop-shadow-2">
               <Image
                 src={ProfileImage}
@@ -87,7 +87,7 @@ const Perfil = () => {
                 type="text"
                 value={nombreCompleto}
                 disabled
-                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base"
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />
             </div>
             <div>
@@ -98,7 +98,7 @@ const Perfil = () => {
                 type="text"
                 value={usuario.username}
                 disabled
-                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base"
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />
             </div>
             <div>
@@ -109,7 +109,7 @@ const Perfil = () => {
                 type="email"
                 value={usuario.email}
                 disabled
-                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base"
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />
             </div>
           </div>
