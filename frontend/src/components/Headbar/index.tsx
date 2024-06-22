@@ -4,10 +4,13 @@ import Image from "next/image";
 import ProfileImage from "../../../public/no-photo.webp";
 import { Logout, Setting2, ArrowDown2, ArrowUp2, Profile } from "iconsax-react";
 import axios from "axios";
+import Ajustes from "@/components/ajustes";
 
 function HeadBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showAjustes, setShowAjustes] = useState(false);
   const dropdownRef = useRef(null);
+  const ajustesRef = useRef(null); // Referencia para el componente Ajustes
   const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,14 +44,24 @@ function HeadBar() {
     setIsDropdownOpen((prevState) => !prevState);
   };
 
+  const toggleAjustes = () => {
+    setShowAjustes(!showAjustes);
+    setIsDropdownOpen(false);
+  };
+
   const handleOutsideClick = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      !ajustesRef.current.contains(event.target) // Comprobar si el clic no está dentro de Ajustes
+    ) {
       setIsDropdownOpen(false);
+      setShowAjustes(false); // Cerrar Ajustes al hacer clic fuera de él
     }
   };
 
   useEffect(() => {
-    if (isDropdownOpen) {
+    if (isDropdownOpen || showAjustes) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
       document.removeEventListener("mousedown", handleOutsideClick);
@@ -57,13 +70,14 @@ function HeadBar() {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [isDropdownOpen]);
+  }, [isDropdownOpen, showAjustes]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUsuario(null);
     setLoading(true);
     setIsDropdownOpen(false);
+    setShowAjustes(false);
     window.location.href = "/login";
   };
 
@@ -73,10 +87,15 @@ function HeadBar() {
       text: "Mi perfil",
       onClick: () => {
         setIsDropdownOpen(false);
+        setShowAjustes(false);
         window.location.href = "/perfil";
       },
     },
-    { icon: <Setting2 size={20} className="text-gray-600" />, text: "Ajustes" },
+    {
+      icon: <Setting2 size={20} className="text-gray-600" />,
+      text: "Ajustes",
+      onClick: toggleAjustes,
+    },
     { divider: true },
     {
       icon: <Logout size={20} className="text-gray-600" />,
@@ -84,6 +103,7 @@ function HeadBar() {
       onClick: handleLogout,
     },
   ];
+
   if (error) {
     return <p>Error: {error}</p>;
   }
@@ -123,7 +143,6 @@ function HeadBar() {
               )}
             </div>
           </div>
-
           {usuario && isDropdownOpen && (
             <div
               ref={dropdownRef}
@@ -149,6 +168,13 @@ function HeadBar() {
                   ),
                 )}
               </div>
+            </div>
+          )}
+          {showAjustes && (
+            <div ref={ajustesRef}>
+              {" "}
+              {/* Establecer la referencia para Ajustes */}
+              <Ajustes onClose={toggleAjustes} />
             </div>
           )}
         </div>
