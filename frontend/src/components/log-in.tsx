@@ -11,11 +11,12 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 export function LogIn() {
   const [username, setUsername] = useState("");
@@ -133,6 +134,17 @@ export function LogIn() {
               >
                 Continuar
               </Button>
+            </article>
+            <article className="flex justify-center w-full mt-7">
+              <p className="text-sm text-blue-900">
+                ¿No tienes cuenta?{" "}
+                <Link
+                  href="/register"
+                  className="text-blue-700 font-bold hover:underline"
+                >
+                  Regístrate
+                </Link>
+              </p>
             </article>
           </section>
         </CardContent>

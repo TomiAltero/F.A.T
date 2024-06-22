@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ProfileImage from "../../public/no-photo.webp";
@@ -44,8 +43,10 @@ const Perfil = () => {
     return <p>{error}</p>;
   }
 
+  const nombreCompleto = `${usuario.nombre} ${usuario.apellido}`;
+
   return (
-    <div className="mx-auto max-w-242.5 mt-auto">
+    <div className="mx-auto max-w-3xl mt-10 ">
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="relative z-20 h-35 md:h-65">
           <Image
@@ -77,11 +78,40 @@ const Perfil = () => {
               />
             </div>
           </div>
-          <div className="mt-4">
-            <h3 className="mb-1.5 text-2xl font-semibold text-black dark:text-white">
-              {usuario.nombre} {usuario.apellido}
-            </h3>
-            <p className="font-medium">{usuario.username}</p>
+          <div className="mt-6 space-y-6 text-center items-center">
+            <div>
+              <label className="block text-base font-medium text-black">
+                Nombre Completo
+              </label>
+              <input
+                type="text"
+                value={nombreCompleto}
+                disabled
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base"
+              />
+            </div>
+            <div>
+              <label className="block text-base font-medium text-black">
+                Nombre de usuario
+              </label>
+              <input
+                type="text"
+                value={usuario.username}
+                disabled
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base"
+              />
+            </div>
+            <div>
+              <label className="block text-base font-medium text-black">
+                Correo electrónico
+              </label>
+              <input
+                type="email"
+                value={usuario.email}
+                disabled
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base"
+              />
+            </div>
           </div>
         </div>
       </div>

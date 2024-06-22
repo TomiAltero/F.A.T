@@ -103,7 +103,7 @@ function HeadBar() {
               alt="User"
               width={40}
               height={40}
-              className="rounded-full"
+              className="rounded-full border border-green-600"
             />
             <div className="ml-2">
               <p className="text-sm font-semibold text-gray-800">
