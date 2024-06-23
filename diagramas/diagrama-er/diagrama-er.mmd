@@ -4,48 +4,61 @@ erDiagram
         int idUsuario PK
         varchar nombre
         varchar apellido
-        varchar email
+        varchar correo
         varchar contrasenia
+    }
+
+    Paciente {
+        int idPaciente PK
+        int idUsuario FK
+        int idDireccion FK
         varchar telefono
         date fechaNacimiento
-        int idTipoUsuario FK
-        int idDireccion FK
+        int dni
     }
     
-    TipoUsuario {
-        int idTipoUsuario PK
-        varchar nombre
-        text descripcion
+    Administrador {
+        int idAdministrador PK
+        int idUsuario FK
     }
-
+    
     Especialista {
-        int matricula PK
+        int idEspecialista PK
         int idUsuario FK
         int idEspecialidad FK
-
+        int matricula
     }
-    
+
     Especialidad {
         int idEspecialidad PK
-        varchar nombre
+        varchar especialidad
         text descripcion
     }
     
     Turno {
         int idTurno PK
-        int matriculaEspecialista FK
         date fecha
-        time horaInicioReal
-        time horaFinReal
-        time horaInicioEstimada
-        time horaFinEstimada
+        time hora
+        int idEspecialista FK
+        int idPaciente FK
         int idEstadoTurno FK
     }
-
+    
     EstadoTurno {
         int idEstadoTurno PK
-        varchar nombre
+        varchar estado
         text descripcion
+    }
+
+    FichaMedica {
+        int idFichaMedica PK
+        int idPaciente FK
+        int idEspecialista FK
+        date fecha
+        varchar motivoConsulta
+        text examenFisico
+        text diagnostico
+        text observaciones
     }
 
     FichaPaciente {
@@ -53,12 +66,12 @@ erDiagram
         int idUsuario FK
         float altura
         float peso
+        text antecedentes
         int idObraSocial FK
         int idGrupoSanguineo FK
         int idAntecedentePrevio FK
-        
     }
-
+    
     AntecedentePrevio {
         int idAntecedentePrevio PK
         int idFichaPaciente FK
@@ -66,23 +79,25 @@ erDiagram
         text descripcion
         date fecha
     }
+
     GrupoSanguineo {
         int idGrupoSanguineo PK
         varchar Factor
         varchar Grupo
-
     }
+
     ObraSocial {
         int idObraSocial PK
         varchar nombre
         text descripcion
     }
+
     Direccion {
         int idDireccion PK
         varchar calle
         varchar numero
         varchar codigoPostal
-        int idCiudad
+        int idCiudad FK
     }
 
     Ciudad {
@@ -101,3 +116,40 @@ erDiagram
         int idPais PK
         varchar nombre
     }
+    
+    HistoriaClinica {
+        int idHistoriaClinica PK
+        int idPaciente FK
+        int idEspecialista FK
+        date fecha
+        text antecedentes
+        text examenFisico
+        text diagnostico
+        text observaciones
+        int idMedicamento FK
+    }
+    
+
+    Usuario ||--o| Paciente : tiene
+    Usuario ||--o| Administrador : tiene
+    Usuario ||--o| Especialista : tiene
+    Paciente ||--o{ Turno : tiene
+    Especialista ||--o{ Turno : tiene
+    Turno ||--o{ EstadoTurno : tiene
+    Paciente ||--o{ FichaMedica : tiene
+    Especialista ||--o{ FichaMedica : tiene
+    Paciente ||--o{ HistoriaClinica : tiene
+    Especialista ||--o{ HistoriaClinica : tiene
+    Paciente ||--o{ FichaPaciente : tiene
+    FichaPaciente ||--o| AntecedentePrevio : tiene
+    FichaPaciente ||--o| GrupoSanguineo : tiene
+    FichaPaciente ||--o| ObraSocial : tiene
+    Especialista ||--o{ Especialidad : tiene
+    Paciente ||--o{ Direccion : tiene
+    Direccion ||--o| Ciudad : pertenece
+    Ciudad ||--o| Provincia : pertenece
+    Provincia ||--o| Pais : pertenece
+
+
+
+    
