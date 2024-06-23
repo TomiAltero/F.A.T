@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "tomialtero",
+    "password": "T29092005a#",
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "tomialtero",
+    "password": "T29092005a#",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "tomialtero",
+    "password": "T29092005a#",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

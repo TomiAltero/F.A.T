@@ -5,11 +5,12 @@ import { opensans } from "@/components/ui/fonts";
 
 export const metadata: Metadata = {
   title: "Down Is Up",
-  description: "We are an non-profit organization that helps kids with Down Syndrome",
+  description:
+    "We are an non-profit organization that helps kids with Down Syndrome",
   icons: "/favicon.ico",
 };
 
-export default function RootLayout({
+export default function LandingLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -17,7 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${opensans.className} h-[100vh] text-2xl`}>
-        <NavBar />
         {children}
       </body>
     </html>

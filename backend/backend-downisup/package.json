@@ -16,6 +16,7 @@
     "express-validator": "^7.1.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "mysql2": "^3.9.7",
     "pg": "^8.11.5",
