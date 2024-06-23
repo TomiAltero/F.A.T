@@ -14,6 +14,7 @@ export function SignUp() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
+  const [dni, setDni] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [nombre, setNombre] = useState<string>("");
@@ -45,6 +46,7 @@ export function SignUp() {
       const response = await axios.post("http://localhost:5000/api/usuarios", {
         username,
         email,
+        dni,
         password,
         nombre,
         apellido,
@@ -75,6 +77,7 @@ export function SignUp() {
       setApellido("");
       setUsername("");
       setEmail("");
+      setDni("");
       setPassword("");
       setConfirmPassword("");
     } catch (error: any) {
@@ -190,6 +193,24 @@ export function SignUp() {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </article>
+            <article className="space-y-2 my-2">
+              <Label
+                className="block text-xs font-bold leading-6 text-blue-900"
+                htmlFor="email"
+              >
+                DNI
+              </Label>
+              <Input
+                className="rounded-xl border-t-0 border-l-0 border-r-0 border-b-2 border-blue-800 outline-none focus:ring-0 focus:border-blue-700" // Borde solo inferior
+                id="dni"
+                name="dni"
+                placeholder="Ingrese su DNI"
+                required
+                type="text"
+                value={dni}
+                onChange={(e) => setDni(e.target.value)}
+              />
+            </article>
 
             <article className="space-y-2 my-2">
               <Label
@@ -209,6 +230,7 @@ export function SignUp() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </article>
+
             <article className="space-y-2 my-2">
               <Label
                 className="block text-xs font-bold leading-6 text-blue-900"

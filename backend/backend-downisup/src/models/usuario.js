@@ -38,6 +38,7 @@ Usuario.init(
     dni: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: null,
     },
   },
   {
