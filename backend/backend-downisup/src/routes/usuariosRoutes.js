@@ -35,4 +35,10 @@ router.get(
   usuarioController.obtenerFrecuenciaCardiacas,
 );
 
+router.get(
+  "/hijo/:hijoId/presionArterial",
+  verificarToken,
+  usuarioController.obtenerPresionArterial,
+);
+
 module.exports = router;

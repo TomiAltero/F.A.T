@@ -35,6 +35,10 @@ Usuario.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    dni: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     sequelize,

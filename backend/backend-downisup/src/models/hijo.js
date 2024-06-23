@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
 const FrecuenciaCardiaca = require("./frecuenciaCardiaca");
+const PresionArterial = require("./presionArterial");
 
 class Hijo extends Model {}
 
@@ -50,6 +51,11 @@ Hijo.init(
 Hijo.hasMany(FrecuenciaCardiaca, {
   foreignKey: "hijoId",
   as: "frecuenciasCardiacas",
+});
+
+Hijo.hasMany(PresionArterial, {
+  foreignKey: "hijoId",
+  as: "presionArterial",
 });
 
 module.exports = Hijo;

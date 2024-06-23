@@ -1,4 +1,6 @@
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
+const Hijo = require("./hijo");
 
 class PresionArterial extends Model {}
 
@@ -38,4 +40,11 @@ PresionArterial.init(
   },
 );
 
-module.exports(PresionArterial);
+PresionArterial.associate = (models) => {
+  PresionArterial.belongsTo(models.Hijo, {
+    foreignKey: "hijoId",
+    as: "Hijos",
+  });
+};
+
+module.exports = PresionArterial;

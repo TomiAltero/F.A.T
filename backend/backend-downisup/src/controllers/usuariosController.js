@@ -4,11 +4,12 @@ const Hijo = require("../models/hijo");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const FrecuenciaCardiaca = require("../models/frecuenciaCardiaca");
+const PresionArterial = require("../models/presionArterial");
 
 class UsuarioController {
   async obtenerUsuarios(req, res) {
+    const usuarios = await Usuario.findAll();
     try {
-      const usuarios = await Usuario.findAll();
       res.json(usuarios);
     } catch (error) {
       console.error("Error al obtener usuarios:", error);
@@ -189,7 +190,7 @@ class UsuarioController {
           where: { id: hijoId },
           include: {
             model: FrecuenciaCardiaca,
-            as: "frecuenciasCardiacas", // Alias definido en Hijo
+            as: "frecuenciasCardiacas",
           },
         },
       });
@@ -198,13 +199,13 @@ class UsuarioController {
         return res.status(404).json({ error: "Hijo no encontrado" });
       }
 
-      const hijo = usuario.Hijos[0]; // Obtener el primer hijo (ajusta según tu lógica)
+      const hijo = usuario.Hijos[0];
 
       if (!hijo) {
         return res.status(404).json({ error: "Hijo no encontrado" });
       }
 
-      const frecuenciaCardiacas = await hijo.frecuenciasCardiacas; // Acceder a las frecuencias cardiacas del hijo
+      const frecuenciaCardiacas = await hijo.frecuenciasCardiacas;
 
       res.json(frecuenciaCardiacas);
     } catch (error) {
@@ -212,6 +213,43 @@ class UsuarioController {
       res
         .status(500)
         .json({ error: "Hubo un error al obtener las frecuencias cardiacas" });
+    }
+  }
+
+  async obtenerPresionArterial(req, res) {
+    try {
+      const { hijoId } = req.params;
+      const usuario = await Usuario.findByPk(req.userId, {
+        include: {
+          model: Hijo,
+          through: UsuarioXHijo,
+          as: "Hijos",
+          where: { id: hijoId },
+          include: {
+            model: PresionArterial,
+            as: "presionArterial",
+          },
+        },
+      });
+
+      if (!usuario) {
+        return res.status(404).json({ error: "Hijo no encontrado" });
+      }
+
+      const hijo = usuario.Hijos[0];
+
+      if (!hijo) {
+        return res.status(404).json({ error: "Hijo no encontrado" });
+      }
+
+      const presionesArteriales = await hijo.getPresionArterial();
+
+      res.json(presionesArteriales);
+    } catch (error) {
+      console.error("Error al obtener las Presiones Arteriales:", error);
+      res
+        .status(500)
+        .json({ error: "Hubo un error al obtener las presiones arteriales" });
     }
   }
 }

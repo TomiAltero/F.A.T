@@ -5,6 +5,7 @@ import CardDataStats from "@/components/ui/cardMedical";
 
 export default function Inicio() {
   const [frecuenciaCardiaca, setFrecuenciaCardiaca] = useState(null);
+  const [presionArterial, setPresionArterial] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function Inicio() {
             },
           );
 
+          console.log(hijo.id);
           if (frecuencias.data.length > 0) {
             const frecuencia = frecuencias.data[0];
             setFrecuenciaCardiaca(frecuencia);
@@ -46,7 +48,46 @@ export default function Inicio() {
       }
     };
 
+    const obtenerPresionArterial = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          "http://localhost:5000/api/usuarios/perfil",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        const hijos = response.data.hijos;
+        if (hijos.length > 0) {
+          const hijo = hijos[0];
+          const presiones = await axios.get(
+            `http://localhost:5000/api/usuarios/hijo/${hijo.id}/presionArterial`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
+
+          if (presiones.data.length > 0) {
+            const presion = presiones.data[0];
+            setPresionArterial(presion);
+          } else {
+            setPresionArterial(null);
+          }
+        } else {
+          setPresionArterial(null);
+        }
+      } catch (error) {
+        console.error("Error al obtener la presión arterial:", error);
+        setError("Error al obtener la presión arterial del hijo");
+      }
+    };
+
     obtenerFrecuenciaCardiaca();
+    obtenerPresionArterial();
   }, []);
 
   if (error) {
@@ -56,24 +97,40 @@ export default function Inicio() {
   return (
     <section>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <CardDataStats
-          category="Presion Arterial"
-          value="120/80"
-          description="Presión arterial en rango normal."
-          improved={true}
-          worsened={false}
-        />
+        {presionArterial ? (
+          <CardDataStats
+            category="Presion Arterial"
+            value={presionArterial.sistolica + "/" + presionArterial.diastolica}
+            description={presionArterial.descripcion}
+            improved={true}
+            worsened={false}
+          />
+        ) : (
+          <CardDataStats
+            category="Presion Arterial"
+            value="N/A"
+            description="No hay datos de presión arterial disponibles."
+            improved={false}
+            worsened={false}
+          />
+        )}
 
         {frecuenciaCardiaca ? (
           <CardDataStats
             category="Frecuencia Cardiaca"
             value={frecuenciaCardiaca.frecuencia}
-            description="Frecuencia cardiaca en rango normal."
+            description={frecuenciaCardiaca.descripcion}
             improved={true}
             worsened={false}
           />
         ) : (
-          <p style={{ color: "black" }}>Cargando frecuencia cardíaca...</p>
+          <CardDataStats
+            category="Frecuencia Cardiaca"
+            value="N/A"
+            description="No hay datos de frecuencia cardíaca disponibles."
+            improved={false}
+            worsened={false}
+          />
         )}
 
         <CardDataStats

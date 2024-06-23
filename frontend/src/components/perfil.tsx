@@ -112,6 +112,17 @@ const Perfil = () => {
                 className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />
             </div>
+            <div>
+              <label className="block text-base font-medium text-black">
+                DNI
+              </label>
+              <input
+                type="text"
+                value={usuario.dni}
+                disabled
+                className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
+              />
+            </div>
           </div>
         </div>
       </div>
