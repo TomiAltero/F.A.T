@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 interface Hijo {
+  id: number;
   nombre: string;
   apellido: string;
   edad: number;
@@ -18,6 +19,8 @@ export function PanelHijo() {
   const [usuario, setUsuario] = useState<any>(null);
   const [hijos, setHijos] = useState<Hijo[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [selectedHijoId, setSelectedHijoId] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const obtenerPerfilUsuario = async () => {
@@ -33,7 +36,9 @@ export function PanelHijo() {
         );
         setUsuario(response.data.usuario);
         setHijos(response.data.hijos);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         setError("Error al obtener el perfil del usuario");
       }
     };
@@ -41,12 +46,16 @@ export function PanelHijo() {
     obtenerPerfilUsuario();
   }, []);
 
-  if (error) {
-    return <p style={{ color: "black" }}>Error: {error}</p>;
+  const handleClickVerMas = (hijoId: number) => {
+    setSelectedHijoId(hijoId);
+  };
+
+  if (isLoading) {
+    return <p style={{ color: "black" }}>Cargando...</p>;
   }
 
-  if (!usuario) {
-    return <p style={{ color: "black" }}>Cargando...</p>;
+  if (error) {
+    return <p style={{ color: "black" }}>Error: {error}</p>;
   }
 
   return (
@@ -56,8 +65,8 @@ export function PanelHijo() {
           No tienes hijos registrados.
         </Typography>
       ) : (
-        hijos.map((hijo, index) => (
-          <Card key={index} sx={{ width: 350, borderRadius: 4, margin: 2 }}>
+        hijos.map((hijo) => (
+          <Card key={hijo.id} sx={{ width: 350, borderRadius: 4, margin: 2 }}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {hijo.nombre} {hijo.apellido}
@@ -70,7 +79,11 @@ export function PanelHijo() {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" href="/inicio">
+              <Button
+                size="small"
+                onClick={() => handleClickVerMas(hijo.id)}
+                href="/inicio"
+              >
                 Ver más
               </Button>
             </CardActions>

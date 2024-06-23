@@ -3,6 +3,7 @@ const UsuarioXHijo = require("../models/usuarioXHijo");
 const Hijo = require("../models/hijo");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const FrecuenciaCardiaca = require("../models/frecuenciaCardiaca");
 
 class UsuarioController {
   async obtenerUsuarios(req, res) {
@@ -174,6 +175,43 @@ class UsuarioController {
       res
         .status(500)
         .json({ error: "Hubo un error al obtener los hijos del usuario" });
+    }
+  }
+
+  async obtenerFrecuenciaCardiacas(req, res) {
+    try {
+      const { hijoId } = req.params;
+      const usuario = await Usuario.findByPk(req.userId, {
+        include: {
+          model: Hijo,
+          through: UsuarioXHijo,
+          as: "Hijos",
+          where: { id: hijoId },
+          include: {
+            model: FrecuenciaCardiaca,
+            as: "frecuenciasCardiacas", // Alias definido en Hijo
+          },
+        },
+      });
+
+      if (!usuario) {
+        return res.status(404).json({ error: "Hijo no encontrado" });
+      }
+
+      const hijo = usuario.Hijos[0]; // Obtener el primer hijo (ajusta según tu lógica)
+
+      if (!hijo) {
+        return res.status(404).json({ error: "Hijo no encontrado" });
+      }
+
+      const frecuenciaCardiacas = await hijo.frecuenciasCardiacas; // Acceder a las frecuencias cardiacas del hijo
+
+      res.json(frecuenciaCardiacas);
+    } catch (error) {
+      console.error("Error al obtener las frecuencias cardiacas:", error);
+      res
+        .status(500)
+        .json({ error: "Hubo un error al obtener las frecuencias cardiacas" });
     }
   }
 }

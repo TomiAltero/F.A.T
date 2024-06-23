@@ -29,4 +29,10 @@ router.delete("/:id", verificarToken, usuarioController.eliminarUsuario);
 
 router.get("/hijo", verificarToken, usuarioController.obtenerHijos);
 
+router.get(
+  "/hijo/:hijoId",
+  verificarToken,
+  usuarioController.obtenerFrecuenciaCardiacas,
+);
+
 module.exports = router;

@@ -1,5 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
+const Usuario = require("./usuario");
+const Hijo = require("./hijo");
 
 class UsuarioXHijo extends Model {}
 
@@ -21,5 +23,16 @@ UsuarioXHijo.init(
     timestamps: true,
   },
 );
+Usuario.belongsToMany(Hijo, {
+  through: UsuarioXHijo,
+  as: "Hijos",
+  foreignKey: "usuarioId",
+});
+
+Hijo.belongsToMany(Usuario, {
+  through: UsuarioXHijo,
+  as: "Usuarios",
+  foreignKey: "hijoId",
+});
 
 module.exports = UsuarioXHijo;

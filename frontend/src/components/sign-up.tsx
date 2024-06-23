@@ -65,6 +65,8 @@ export function SignUp() {
         },
       }).showToast();
 
+      window.location.href = "/login";
+
       console.log("User registration successful:", response.data);
       setErrors([]);
       setSuccessfulMessage("Usuario registrado exitosamente");
