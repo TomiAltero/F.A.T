@@ -7,10 +7,11 @@ export default function PanelMedico() {
   const [frecuenciaCardiaca, setFrecuenciaCardiaca] = useState(null);
   const [presionArterial, setPresionArterial] = useState(null);
   const [temperatura, setTemperatura] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const obtenerFrecuenciaCardiaca = async () => {
+    const obtenerDatosMedicos = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
@@ -24,110 +25,57 @@ export default function PanelMedico() {
         const hijos = response.data.hijos;
         if (hijos.length > 0) {
           const hijo = hijos[0];
-          const frecuencias = await axios.get(
-            `http://localhost:5000/api/usuarios/hijo/${hijo.id}`,
-            {
+
+          const [frecuencias, presiones, temperaturas] = await Promise.all([
+            axios.get(`http://localhost:5000/api/usuarios/hijo/${hijo.id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-            },
-          );
+            }),
+            axios.get(
+              `http://localhost:5000/api/usuarios/hijo/${hijo.id}/presionArterial`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            ),
+            axios.get(
+              `http://localhost:5000/api/usuarios/hijo/${hijo.id}/temperatura`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            ),
+          ]);
 
-          console.log(hijo.id);
           if (frecuencias.data.length > 0) {
-            const frecuencia = frecuencias.data[0];
-            setFrecuenciaCardiaca(frecuencia);
-          } else {
-            setFrecuenciaCardiaca(null);
+            setFrecuenciaCardiaca(frecuencias.data[0]);
           }
-        } else {
-          setFrecuenciaCardiaca(null);
-        }
-      } catch (error) {
-        console.error("Error al obtener la frecuencia cardíaca:", error);
-        setError("Error al obtener la frecuencia cardíaca del hijo");
-      }
-    };
-
-    const obtenerPresionArterial = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          "http://localhost:5000/api/usuarios/perfil",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        const hijos = response.data.hijos;
-        if (hijos.length > 0) {
-          const hijo = hijos[0];
-          const presiones = await axios.get(
-            `http://localhost:5000/api/usuarios/hijo/${hijo.id}/presionArterial`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            },
-          );
 
           if (presiones.data.length > 0) {
-            const presion = presiones.data[0];
-            setPresionArterial(presion);
-          } else {
-            setPresionArterial(null);
+            setPresionArterial(presiones.data[0]);
           }
-        } else {
-          setPresionArterial(null);
-        }
-      } catch (error) {
-        console.error("Error al obtener la presión arterial:", error);
-        setError("Error al obtener la presión arterial del hijo");
-      }
-    };
 
-    const obtenerTemperatura = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          "http://localhost:5000/api/usuarios/perfil",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        const hijos = response.data.hijos;
-        if (hijos.length > 0) {
-          const hijo = hijos[0];
-          const temperaturas = await axios.get(
-            `http://localhost:5000/api/usuarios/hijo/${hijo.id}/temperatura`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            },
-          );
           if (temperaturas.data.length > 0) {
-            const temperatura = temperaturas.data[0];
-            setTemperatura(temperatura);
-          } else {
-            setTemperatura(null);
+            setTemperatura(temperaturas.data[0]);
           }
-        } else {
-          setTemperatura(null);
         }
       } catch (error) {
-        console.error("Error al obtener la temperatura:", error);
-        setError("Error al obtener la temperatura del hijo");
+        console.error("Error al obtener datos médicos:", error);
+        setError("Error al obtener datos médicos");
+      } finally {
+        setLoading(false);
       }
     };
 
-    obtenerFrecuenciaCardiaca();
-    obtenerPresionArterial();
-    obtenerTemperatura();
+    obtenerDatosMedicos();
   }, []);
+
+  if (loading) {
+    return <p style={{ color: "black" }}>Cargando datos...</p>;
+  }
 
   if (error) {
     return <p style={{ color: "black" }}>Error: {error}</p>;

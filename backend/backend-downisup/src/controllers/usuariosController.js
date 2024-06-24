@@ -41,6 +41,7 @@ class UsuarioController {
       const nuevoUsuario = await Usuario.create({
         username,
         email,
+        dni,
         password: hashedPassword,
         nombre,
         apellido,

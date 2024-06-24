@@ -4,7 +4,7 @@ import { FaFlag } from "react-icons/fa";
 
 const Ajustes = ({ onClose }) => {
   const [darkMode, setDarkMode] = useState(false);
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false); // Notifications deactivated by default
   const [language, setLanguage] = useState("es"); // Default language: Spanish
 
   const toggleDarkMode = () => {
