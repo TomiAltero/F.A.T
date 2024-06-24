@@ -1,32 +1,46 @@
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
+const Hijo = require("./hijo");
 
 class Peso extends Model {}
 
-Peso.init({
-  id: {
-    DataTypes: INTEGER,
-    autoIncrement: true,
+Peso.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    peso: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    descripcion: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    fecha: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    hora: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
   },
-  peso: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
+  {
+    sequelize,
+    modelName: "Peso",
+    tableName: "peso",
+    timestamps: false,
   },
-  descripcion: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  fecha: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  hora: {
-    type: DataTypes.TIME,
-    allowNull: false,
-  },
-  hijoId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-});
 
-module.exports(Peso);
+  (Peso.associate = (models) => {
+    Peso.belongsTo(models.Hijo, {
+      foreignKey: "hijoId",
+      as: "Hijos",
+    });
+  }),
+);
+
+module.exports = Peso;

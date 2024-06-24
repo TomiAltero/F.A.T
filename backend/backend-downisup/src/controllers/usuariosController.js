@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const FrecuenciaCardiaca = require("../models/frecuenciaCardiaca");
 const PresionArterial = require("../models/presionArterial");
 const Temperatura = require("../models/temperatura");
+const Peso = require("../models/peso");
 
 class UsuarioController {
   async obtenerUsuarios(req, res) {
@@ -283,6 +284,36 @@ class UsuarioController {
       res
         .status(500)
         .json({ error: "Hubo un error al obtener las temperaturas" });
+    }
+  }
+
+  async obtenerPesos(req, res) {
+    try {
+      const { hijoId } = req.params;
+      const usuario = await Usuario.findByPk(req.userId, {
+        include: {
+          model: Hijo,
+          through: UsuarioXHijo,
+          as: "Hijos",
+          where: { id: hijoId },
+          include: {
+            model: Peso,
+            as: "Peso",
+          },
+        },
+      });
+      if (!usuario) {
+        return res.status(404).json({ error: "Hijo no encontrado" });
+      }
+      const hijo = usuario.Hijos[0];
+      if (!hijo) {
+        return res.status(404).json({ error: "Hijo no encontrado" });
+      }
+      const pesos = await hijo.getPeso();
+      res.json(pesos);
+    } catch (error) {
+      console.error("Error al obtener los pesos:", error);
+      res.status(500).json({ error: "Hubo un error al obtener los pesos" });
     }
   }
 }

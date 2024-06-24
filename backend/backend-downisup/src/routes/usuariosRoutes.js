@@ -47,4 +47,10 @@ router.get(
   usuarioController.obtenerTemperaturas,
 );
 
+router.get(
+  "/hijo/:hijoId/peso",
+  verificarToken,
+  usuarioController.obtenerPesos,
+);
+
 module.exports = router;

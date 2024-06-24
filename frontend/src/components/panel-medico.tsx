@@ -7,6 +7,7 @@ export default function PanelMedico() {
   const [frecuenciaCardiaca, setFrecuenciaCardiaca] = useState(null);
   const [presionArterial, setPresionArterial] = useState(null);
   const [temperatura, setTemperatura] = useState(null);
+  const [peso, setPeso] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,29 +27,39 @@ export default function PanelMedico() {
         if (hijos.length > 0) {
           const hijo = hijos[0];
 
-          const [frecuencias, presiones, temperaturas] = await Promise.all([
-            axios.get(`http://localhost:5000/api/usuarios/hijo/${hijo.id}`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }),
-            axios.get(
-              `http://localhost:5000/api/usuarios/hijo/${hijo.id}/presionArterial`,
-              {
+          const [frecuencias, presiones, temperaturas, peso] =
+            await Promise.all([
+              axios.get(`http://localhost:5000/api/usuarios/hijo/${hijo.id}`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-              },
-            ),
-            axios.get(
-              `http://localhost:5000/api/usuarios/hijo/${hijo.id}/temperatura`,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
+              }),
+              axios.get(
+                `http://localhost:5000/api/usuarios/hijo/${hijo.id}/presionArterial`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
                 },
-              },
-            ),
-          ]);
+              ),
+              axios.get(
+                `http://localhost:5000/api/usuarios/hijo/${hijo.id}/temperatura`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                },
+              ),
+
+              axios.get(
+                `http://localhost:5000/api/usuarios/hijo/${hijo.id}/peso`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                },
+              ),
+            ]);
 
           if (frecuencias.data.length > 0) {
             setFrecuenciaCardiaca(frecuencias.data[0]);
@@ -60,6 +71,9 @@ export default function PanelMedico() {
 
           if (temperaturas.data.length > 0) {
             setTemperatura(temperaturas.data[0]);
+          }
+          if (peso.data.length > 0) {
+            setPeso(peso.data[0]);
           }
         }
       } catch (error) {
@@ -138,13 +152,23 @@ export default function PanelMedico() {
           />
         )}
 
-        <CardDataStats
-          category="Peso"
-          value="70"
-          description="Peso en rango normal."
-          improved={true}
-          worsened={false}
-        />
+        {peso ? (
+          <CardDataStats
+            category="Peso"
+            value={peso.peso}
+            description={peso.descripcion}
+            improved={true}
+            worsened={false}
+          />
+        ) : (
+          <CardDataStats
+            category="Peso"
+            value="N/A"
+            description="No hay datos de peso disponibles."
+            improved={false}
+            worsened={false}
+          />
+        )}
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5"></div>
