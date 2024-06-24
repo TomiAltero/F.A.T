@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Toastify from "toastify-js";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 export function SignUp() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -296,6 +297,17 @@ export function SignUp() {
               >
                 Continuar
               </Button>
+            </article>
+            <article className="flex justify-center w-full mt-7">
+              <p className="text-sm text-blue-900">
+                ¿Ya tienes cuenta?{" "}
+                <Link
+                  href="/login"
+                  className="text-blue-700 font-bold hover:underline"
+                >
+                  Inicia sesion
+                </Link>
+              </p>
             </article>
           </section>
         </CardContent>
