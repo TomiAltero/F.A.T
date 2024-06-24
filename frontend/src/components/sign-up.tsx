@@ -22,6 +22,7 @@ export function SignUp() {
   const [apellido, setApellido] = useState<string>("");
   const [isMatch, setIsMatch] = useState<boolean>(true);
   const [errors, setErrors] = useState<{ msg: string }[]>([]);
+  const redirectDelay = 2000;
   const [successfulMessage, setSuccessfulMessage] = useState<string | null>(
     null,
   );
@@ -68,7 +69,9 @@ export function SignUp() {
         },
       }).showToast();
 
-      window.location.href = "/login";
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, redirectDelay);
 
       console.log("User registration successful:", response.data);
       setErrors([]);
