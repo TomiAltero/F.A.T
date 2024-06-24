@@ -1,28 +1,30 @@
-const sequelize = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
+const sequelize = require("../config/database");
+const Hijo = require("./hijo");
 
-class Temperatura extends sequelize.Model {}
+class Temperatura extends Model {}
 
 Temperatura.init(
   {
     id: {
-      type: sequelize.DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
     valor: {
-      type: sequelize.DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     descripcion: {
-      type: sequelize.DataTypes.TEXT,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     fecha: {
-      type: sequelize.DataTypes.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     hora: {
-      type: sequelize.DataTypes.TIME,
+      type: DataTypes.TIME,
       allowNull: false,
     },
   },
@@ -41,4 +43,4 @@ Temperatura.associate = (models) => {
   });
 };
 
-module.exports = PresionArterial;
+module.exports = Temperatura;

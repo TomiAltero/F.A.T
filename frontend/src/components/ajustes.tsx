@@ -30,7 +30,7 @@ const Ajustes = ({ onClose }) => {
         >
           ✕
         </button>
-        <h2 className="text-xl font-semibold text-black dark:text-white mt-2 mb-4">
+        <h2 className="text-xl font-semibold -mt-4 mb-4 text-blue-900">
           Ajustes
         </h2>
         <div className="mt-2 space-y-4 text-left items-center">

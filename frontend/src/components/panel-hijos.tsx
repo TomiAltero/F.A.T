@@ -82,7 +82,7 @@ export function PanelHijo() {
               <Button
                 size="small"
                 onClick={() => handleClickVerMas(hijo.id)}
-                href="/inicio"
+                href="/panel-medico"
               >
                 Ver más
               </Button>

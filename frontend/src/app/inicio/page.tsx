@@ -2,14 +2,14 @@ import React from "react";
 import AppLayout from "@/app/applayout";
 import Inicio from "@/components/inicio";
 
-export default function Page() {
+const Page = () => {
   return (
     <AppLayout>
-      <section className="flex justify-center items-center h-full">
-        <h1 className="text-xl  text-center">
-          <Inicio />
-        </h1>
-      </section>
+      <main className="flex justify-center items-center h-full">
+        <Inicio />
+      </main>
     </AppLayout>
   );
-}
+};
+
+export default Page;
