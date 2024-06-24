@@ -114,7 +114,7 @@ export function SignUp() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Card className="mt-8 w-[400px] border-b-4 border-blue-800">
+      <Card className="mt-8 w-[400px] ">
         <CardHeader className="flex flex-col items-center">
           <Image src="/favicon.ico" width={72} height={50} alt="Logo DiU" />
           <CardTitle className="mt-4 text-xl font-bold text-blue-900">
