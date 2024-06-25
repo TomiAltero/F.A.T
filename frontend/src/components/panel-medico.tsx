@@ -2,6 +2,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CardDataStats from "@/components/ui/cardMedical";
+import PesoChart from "@/components/graph";
+import PesoChartTemperatura from "@/components/graph-temp";
 
 export default function PanelMedico() {
   const [frecuenciaCardiaca, setFrecuenciaCardiaca] = useState(null);
@@ -27,7 +29,7 @@ export default function PanelMedico() {
         if (hijos.length > 0) {
           const hijo = hijos[0];
 
-          const [frecuencias, presiones, temperaturas, peso] =
+          const [frecuencias, presiones, temperaturas, pesos] =
             await Promise.all([
               axios.get(`http://localhost:5000/api/usuarios/hijo/${hijo.id}`, {
                 headers: {
@@ -50,7 +52,6 @@ export default function PanelMedico() {
                   },
                 },
               ),
-
               axios.get(
                 `http://localhost:5000/api/usuarios/hijo/${hijo.id}/peso`,
                 {
@@ -70,10 +71,11 @@ export default function PanelMedico() {
           }
 
           if (temperaturas.data.length > 0) {
-            setTemperatura(temperaturas.data[0]);
+            setTemperatura(temperaturas.data);
           }
-          if (peso.data.length > 0) {
-            setPeso(peso.data[0]);
+
+          if (pesos.data.length > 0) {
+            setPeso(pesos.data);
           }
         }
       } catch (error) {
@@ -101,7 +103,7 @@ export default function PanelMedico() {
         {presionArterial ? (
           <CardDataStats
             category="Presion Arterial"
-            value={presionArterial.sistolica + "/" + presionArterial.diastolica}
+            value={`${presionArterial.sistolica}/${presionArterial.diastolica}`}
             description={presionArterial.descripcion}
             improved={true}
             worsened={false}
@@ -137,10 +139,10 @@ export default function PanelMedico() {
         {temperatura ? (
           <CardDataStats
             category="Temperatura"
-            value={temperatura.valor}
-            description={temperatura.descripcion}
-            improved={temperatura.valor <= 37.5}
-            worsened={temperatura.valor > 37.5}
+            value={temperatura[0].valor}
+            description={temperatura[0].descripcion}
+            improved={temperatura[0].valor <= 37.5}
+            worsened={temperatura[0].valor > 37.5}
           />
         ) : (
           <CardDataStats
@@ -155,8 +157,8 @@ export default function PanelMedico() {
         {peso ? (
           <CardDataStats
             category="Peso"
-            value={peso.peso}
-            description={peso.descripcion}
+            value={peso[0].peso}
+            description={peso[0].descripcion}
             improved={true}
             worsened={false}
           />
@@ -170,8 +172,10 @@ export default function PanelMedico() {
           />
         )}
       </div>
-
-      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5"></div>
+      <div className="flex justify-center mt-6 space-x-4">
+        {peso && <PesoChart hijoId={6} />}
+        {temperatura && <PesoChartTemperatura hijoId={6} />}
+      </div>
     </section>
   );
 }
