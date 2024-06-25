@@ -17,6 +17,17 @@ classDiagram
         -String ciudad
         -String pais
         -Date fechaNacimiento
+        
+        +getNombreCompleto(): String
+        +setNombre(nombre: String): void
+        +setApellido(apellido: String): void
+        +setCorreo(correo: String): void
+        +setContraseña(contraseña: String): void
+        +setTelefono(telefono: Int): void
+        +setDireccion(direccion: String): void
+        +setCiudad(ciudad: String): void
+        +setPais(pais: String): void
+        +setFechaNacimiento(fechaNacimiento: Date): void
     }
 
 
@@ -26,6 +37,17 @@ classDiagram
         -String especialista
         -String paciente
         -Estado estado
+
+        +getFecha(): Date
+        +setFecha(fecha: Date): void
+        +getHora(): Time
+        +setHora(hora: Time): void
+        +getEspecialista(): String
+        +setEspecialista(especialista: String): void
+        +getPaciente(): String
+        +setPaciente(paciente: String): void
+        +getEstado(): Estado
+        +setEstado(estado: Estado): void
     }
 
     class Estado {
@@ -37,12 +59,22 @@ classDiagram
         -String nombre
         -String apellido
         -Int dni
+
+        +getNombre(): String
+        +setNombre(nombre: String): void
+        +setApellido(apellido: String): void
+        +setDni(dni: Int): void
     }
 
     class Especialista {
         -String nombre
         -String apellido
         -String especialidad
+
+        +getNombre(): String
+        +setNombre(nombre: String): void
+        +setApellido(apellido: String): void
+        +setEspecialidad(especialidad: String): void
     }
 
 
@@ -56,6 +88,17 @@ classDiagram
         -String ciudad
         -String pais
         -Date fechaNacimiento
+
+        +getNombreCompleto(): String
+        +setNombre(nombre: String): void
+        +setApellido(apellido: String): void
+        +setCorreo(correo: String): void
+        +setContraseña(contraseña: String): void
+        +setTelefono(telefono: Int): void
+        +setDireccion(direccion: String): void
+        +setCiudad(ciudad: String): void
+        +setPais(pais: String): void
+        +setFechaNacimiento(fechaNacimiento: Date): void
     }
 
     class fichaMedica {
@@ -67,6 +110,23 @@ classDiagram
         -String examenFisico
         -String diagnostico
         -String observaciones
+
+        +getPaciente(): Paciente
+        +setPaciente(paciente: Paciente): void
+        +getEspecialista(): Especialista
+        +setEspecialista(especialista: Especialista): void
+        +getFecha(): Date
+        +setFecha(fecha: Date): void
+        +getMotivoConsulta(): String
+        +setMotivoConsulta(motivoConsulta: String): void
+        +getAntecedentes(): String
+        +setAntecedentes(antecedentes: String): void
+        +getExamenFisico(): String
+        +setExamenFisico(examenFisico: String): void
+        +getDiagnostico(): String
+        +setDiagnostico(diagnostico: String): void
+        +getObservaciones(): String
+        +setObservaciones(observaciones: String): void
     }
 
     class HistoriaClinica {
@@ -77,4 +137,19 @@ classDiagram
         -String examenFisico
         -String diagnostico
         -String observaciones
+
+        +getPaciente(): Paciente
+        +setPaciente(paciente: Paciente): void
+        +getEspecialista(): Especialista
+        +setEspecialista(especialista: Especialista): void
+        +getFecha(): Date
+        +setFecha(fecha: Date): void
+        +getAntecedentes(): String
+        +setAntecedentes(antecedentes: String): void
+        +getExamenFisico(): String
+        +setExamenFisico(examenFisico: String): void
+        +getDiagnostico(): String
+        +setDiagnostico(diagnostico: String): void
+        +getObservaciones(): String
+        +setObservaciones(observaciones: String): void
     }
