@@ -7,6 +7,7 @@ Usuario.init(
   {
     username: {
       type: DataTypes.STRING,
+      UNIQUE: true,
       allowNull: false,
     },
     email: {

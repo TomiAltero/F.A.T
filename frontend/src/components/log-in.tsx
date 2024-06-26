@@ -29,6 +29,7 @@ export function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const redirectDelay = 1500;
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,7 +47,9 @@ export function LogIn() {
       localStorage.setItem("token", token);
       setMessage("Inicio de sesión exitoso");
 
-      window.location.href = "/inicio";
+      setTimeout(() => {
+        window.location.href = "/inicio";
+      }, redirectDelay);
 
       Toastify({
         text: "Haz iniciado sesión exitosamente",
