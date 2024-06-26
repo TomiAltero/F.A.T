@@ -7,7 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --blue: #313887;
-  --white: #FDFDFD;
+  --white: #fdfdfd;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,5 +28,14 @@ body {
   }
 }
 
-h1,h2,h3,h4,h5,h6, p, span {
-  color: #000}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  color: #000;
+}
+

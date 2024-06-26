@@ -1,7 +1,6 @@
 "use client";
-
+import React, { useState, FormEvent } from "react";
 import axios from "axios";
-import { useState } from "react";
 import {
   CardTitle,
   CardHeader,
@@ -18,12 +17,20 @@ import "toastify-js/src/toastify.css";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 
+declare global {
+  interface Window {
+    Toastify: any;
+  }
+}
+
+window.Toastify = Toastify;
+
 export function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleLogin = async (event) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {

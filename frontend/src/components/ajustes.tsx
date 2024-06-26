@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { FiGlobe } from "react-icons/fi";
-import { FaFlag } from "react-icons/fa";
 
-const Ajustes = ({ onClose }) => {
+const Ajustes = ({ onClose }: { onClose: () => void }) => {
   const [darkMode, setDarkMode] = useState(false);
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false); // Notifications deactivated by default
-  const [language, setLanguage] = useState("es"); // Default language: Spanish
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [language, setLanguage] = useState("es");
 
   const toggleDarkMode = () => {
     const body = document.body;
@@ -17,7 +15,7 @@ const Ajustes = ({ onClose }) => {
     setNotificationsEnabled(!notificationsEnabled);
   };
 
-  const handleChangeLanguage = (lang) => {
+  const handleChangeLanguage = (lang: string) => {
     setLanguage(lang);
   };
 

@@ -22,22 +22,34 @@ ChartJS.register(
   Legend,
 );
 
-const PesoChartTemperatura = ({ hijoId }) => {
-  const [temperatura, setTemperatura] = useState([]);
+interface TemperaturaData {
+  _id: string;
+  fecha: string;
+  valor: number;
+}
+
+interface Props {
+  hijoId: string;
+}
+
+const PesoChartTemperatura: React.FC<Props> = ({ hijoId }) => {
+  const [temperatura, setTemperatura] = useState<TemperaturaData[]>([]);
 
   useEffect(() => {
     const obtenerTemperatura = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:5000/api/usuarios/hijo/${hijoId}/temperatura`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        if (token) {
+          const response = await axios.get<TemperaturaData[]>(
+            `http://localhost:5000/api/usuarios/hijo/${hijoId}/temperatura`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             },
-          },
-        );
-        setTemperatura(response.data);
+          );
+          setTemperatura(response.data);
+        }
       } catch (error) {
         console.error("Error al obtener temperaturas:", error);
       }

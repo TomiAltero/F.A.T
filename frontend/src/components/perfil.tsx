@@ -5,10 +5,18 @@ import axios from "axios";
 import ProfileImage from "../../public/no-photo.webp";
 import PortadaImage from "../../public/DownisupCBA.jpg";
 
+interface Usuario {
+  nombre: string;
+  apellido: string;
+  username: string;
+  email: string;
+  dni: string;
+}
+
 const Perfil = () => {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const obtenerPerfilUsuario = async () => {
@@ -43,7 +51,7 @@ const Perfil = () => {
     return <p>{error}</p>;
   }
 
-  const nombreCompleto = `${usuario.nombre} ${usuario.apellido}`;
+  const nombreCompleto = usuario ? `${usuario.nombre} ${usuario.apellido}` : "";
 
   return (
     <div className="mx-auto max-w-2xl mt-10">
@@ -96,7 +104,7 @@ const Perfil = () => {
               </label>
               <input
                 type="text"
-                value={usuario.username}
+                value={usuario ? usuario.username : ""}
                 disabled
                 className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />
@@ -107,7 +115,7 @@ const Perfil = () => {
               </label>
               <input
                 type="email"
-                value={usuario.email}
+                value={usuario ? usuario.email : ""}
                 disabled
                 className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />
@@ -118,7 +126,7 @@ const Perfil = () => {
               </label>
               <input
                 type="text"
-                value={usuario.dni}
+                value={usuario ? usuario.dni : ""}
                 disabled
                 className="mt-1 block w-full rounded-md border-0 border-b-2 border-blue-800 focus:border-indigo-500 focus:ring-indigo-500 text-black text-base px-2 py-2"
               />

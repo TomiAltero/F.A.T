@@ -22,22 +22,33 @@ ChartJS.register(
   Legend,
 );
 
-const PesoChart = ({ hijoId }) => {
-  const [pesos, setPesos] = useState([]);
+interface Peso {
+  fecha: string;
+  peso: number;
+}
+
+interface Props {
+  hijoId: string;
+}
+
+const PesoChart: React.FC<Props> = ({ hijoId }) => {
+  const [pesos, setPesos] = useState<Peso[]>([]);
 
   useEffect(() => {
     const obtenerPesos = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:5000/api/usuarios/hijo/${hijoId}/peso`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        if (token) {
+          const response = await axios.get<Peso[]>(
+            `http://localhost:5000/api/usuarios/hijo/${hijoId}/peso`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             },
-          },
-        );
-        setPesos(response.data);
+          );
+          setPesos(response.data);
+        }
       } catch (error) {
         console.error("Error al obtener pesos:", error);
       }
@@ -60,7 +71,7 @@ const PesoChart = ({ hijoId }) => {
   };
 
   return (
-    <div className="md:w-1/2 lg:w-3/4 xl:w-2/3  mt-6">
+    <div className="md:w-1/2 lg:w-3/4 xl:w-2/3 mt-6">
       <Line data={data} />
     </div>
   );
