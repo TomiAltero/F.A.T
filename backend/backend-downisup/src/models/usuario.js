@@ -40,6 +40,10 @@ Usuario.init(
       allowNull: false,
       defaultValue: null,
     },
+    imagen: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,

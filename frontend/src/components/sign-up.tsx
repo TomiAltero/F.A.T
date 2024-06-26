@@ -284,7 +284,7 @@ export function SignUp() {
                   id="show"
                 />
                 <Label
-                  className="block text-xs font-medium leading-6 text-gray-900"
+                  className="block text-xs font-medium leading-6  text-gray-900"
                   htmlFor="show"
                 >
                   Mostrar contraseña
@@ -295,7 +295,7 @@ export function SignUp() {
               <Button
                 disabled={!isMatch}
                 variant={"primary"}
-                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+                className="w-full rounded-2xl bg-custom-blue px-3 py-2 text-sm font-semi bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2  "
                 type="submit"
               >
                 Continuar

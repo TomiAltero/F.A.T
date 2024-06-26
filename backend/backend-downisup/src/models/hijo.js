@@ -41,6 +41,10 @@ Hijo.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    imagen: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,

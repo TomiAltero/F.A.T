@@ -7,6 +7,7 @@ const FrecuenciaCardiaca = require("../models/frecuenciaCardiaca");
 const PresionArterial = require("../models/presionArterial");
 const Temperatura = require("../models/temperatura");
 const Peso = require("../models/peso");
+const upload = require("../config/upload");
 
 class UsuarioController {
   async obtenerUsuarios(req, res) {
@@ -35,7 +36,8 @@ class UsuarioController {
 
   async agregarUsuario(req, res) {
     try {
-      const { username, email, dni, password, nombre, apellido } = req.body;
+      const { username, email, dni, password, nombre, apellido, imagen } =
+        req.body;
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -46,6 +48,7 @@ class UsuarioController {
         password: hashedPassword,
         nombre,
         apellido,
+        imagen,
       });
 
       console.log("Usuario creado:", nuevoUsuario.toJSON());
