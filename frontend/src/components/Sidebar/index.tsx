@@ -80,7 +80,7 @@ function Sidebar() {
               Calendario Terapias
             </Link>
             <Link
-              href="/app/documents"
+              href="/chat"
               className={`flex ${
                 pathname === "/app/documents" ? "text-blue-700" : ""
               } hover:text-blue-700 duration-200 px-6 py-2 items-center gap-2 transition-all ease-in-out`}
